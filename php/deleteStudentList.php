@@ -23,7 +23,9 @@ if (!$stmt) {
 
 $stmt->bind_param("i", $sid);
 if ($stmt->execute()) {
-    echo '<meta http-equiv="refresh" content="0; url=/student/students.php" />';
+     // Redirect to the class-subject page
+     header("Location: /student/students.php");
+     exit;
 } else {
     echo "Failed to Delete Record";
 }

@@ -98,17 +98,17 @@ $userEmail = $_SESSION['userEmail'];
                         <div class="dropdown me-2">
                             <a href="#" class="btn btn-outline-light fw-normal bg-white d-flex align-items-center p-2"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="ti ti-calendar-due me-1"></i>Academic Year : 2024 / 2025
+                                <i class="ti ti-calendar-due me-1"></i>Academic Year : 2081 / 2082
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2023 / 2024
+                                    Academic Year : 2082 / 2083
                                 </a>
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2022 / 2023
+                                    Academic Year : 2083 / 2084
                                 </a>
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2021 / 2022
+                                    Academic Year : 2084 / 2085
                                 </a>
                             </div>
                         </div>
@@ -174,7 +174,7 @@ $userEmail = $_SESSION['userEmail'];
                                                     <p class="text-dark">Teachers</p>
                                                 </a>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" hidden>
                                                 <a href="add-staff.php"
                                                     class="d-block bg-warning-transparent ronded p-2 text-center mb-3 class-hover">
                                                     <div class="avatar avatar-lg rounded-circle mb-2">
@@ -185,7 +185,7 @@ $userEmail = $_SESSION['userEmail'];
                                                     <p class="text-dark">Staffs</p>
                                                 </a>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" hidden>
                                                 <a href="add-invoice.php"
                                                     class="d-block bg-info-transparent ronded p-2 text-center mb-3 class-hover">
                                                     <div class="avatar avatar-lg mb-2">
@@ -358,7 +358,7 @@ $userEmail = $_SESSION['userEmail'];
                                             <p class="text-primary mb-0">Administrator</p>
                                         </div>
                                     </div>
-                                    
+
                                     <hr class="m-0">
                                     <a class="dropdown-item d-inline-flex align-items-center p-2" href="login.php"><i
                                             class="ti ti-login me-2"></i>Logout</a>
@@ -483,9 +483,9 @@ $userEmail = $_SESSION['userEmail'];
                         </li>
                         <li>
                             <ul>
-                            <li>
+                                <li>
                                     <a href="classes.php"><i
-                                            class="ti ti-school-bell"></i><span>Classes</span></a>
+                                            class="ti ti-school-bell"></i><span>Courses</span></a>
                                     <ul hidden>
                                         <li><a href="classes.php">All Classes</a></li>
                                         <li><a href="schedule-classes.php">Schedule</a></li>
@@ -498,7 +498,7 @@ $userEmail = $_SESSION['userEmail'];
                                             Routine</span></a></li>
                                 <li hidden><a href="class-section.php"><i
                                             class="ti ti-square-rotated-forbid-2"></i><span>Section</span></a></li>
-                                <li><a href="class-subject.php"><i class="ti ti-book"></i><span>Subject</span></a></li>
+                                <li><a href="class-subject.php"><i class="ti ti-book"></i><span>Sub-courses</span></a></li>
                                 <li hidden><a href="class-syllabus.php"><i
                                             class="ti ti-book-upload"></i><span>Syllabus</span></a></li>
                                 <li hidden><a href="class-time-table.php"><i class="ti ti-table"></i><span>Time
@@ -1043,7 +1043,7 @@ $userEmail = $_SESSION['userEmail'];
                 </div>
             </div>
         </div>
-        
+
         <div class="page-wrapper">
             <div class="content">
 
@@ -1093,9 +1093,6 @@ $userEmail = $_SESSION['userEmail'];
                                             class="ti ti-file-type-xls me-1"></i>Export as Excel </a>
                                 </li>
                             </ul>
-                        </div>
-                        <div class="mb-2">
-                            <a href="add-fees-master.php" class="btn btn-primary d-flex align-items-center me-3"><i class="ti ti-square-rounded-plus me-2"></i>Add Fees Master</a>
                         </div>
                     </div>
                 </div>
@@ -1244,10 +1241,15 @@ $userEmail = $_SESSION['userEmail'];
                                         <th>Sn. No.</th>
                                         <th>Bill No.</th>
                                         <th>Name Of Student</th>
-                                        <th>Class</th>
+                                        <th>Courses</th>
                                         <th>Roll_No</th>
                                         <th>Fees Group</th>
-                                        <th>Total Paid</th>
+                                        <th>Total Fees (Rs)</th>
+                                        <th>Pending Amount</th>
+                                        <th>Discount</th>
+                                        <th>Amount Paid</th>
+                                        <th>Final Pending Amount</th>
+                                        <th>Remarks</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -1258,10 +1260,10 @@ $userEmail = $_SESSION['userEmail'];
                                     $mysqli = db_connect();
 
                                     if ($mysqli) {
-                                        $stmt = $mysqli->prepare("SELECT feescollection.ID, addstudent.ID, addstudent.fnameOfStudent, addstudent.lnameOfStudent, addstudent.class, addstudent.rollNumber, addstudent.feesGroup, feescollection.AmountPaid FROM `feescollection` INNER JOIN addstudent ON addstudent.ID = feescollection.StudentID ORDER BY feescollection.ID DESC;");
+                                        $stmt = $mysqli->prepare("SELECT feescollection.ID, addstudent.ID, addstudent.fnameOfStudent, addstudent.lnameOfStudent, addstudent.class, addstudent.rollNumber, addstudent.feesGroup, feescollection.courseFee, feescollection.discount, feescollection.remarks,  feescollection.pendingAmount, feescollection.finalPendingAmount, feescollection.AmountPaid FROM `feescollection` INNER JOIN addstudent ON addstudent.ID = feescollection.StudentID ORDER BY feescollection.ID DESC;");
                                         $stmt->execute();
                                         $stmt->store_result();
-                                        $stmt->bind_result($ID, $studentID, $fnameOfStudent, $lnameOfStudent, $class, $rollNumber, $feesGroup, $AmountPaid);
+                                        $stmt->bind_result($ID, $studentID, $fnameOfStudent, $lnameOfStudent, $class, $rollNumber, $feesGroup, $courseFee, $discount, $remark, $pendingAmount, $finalPendingAmount, $AmountPaid);
                                         $sn = 1;
                                         while ($stmt->fetch()) {
                                             echo "<tr>";
@@ -1276,7 +1278,13 @@ $userEmail = $_SESSION['userEmail'];
                                             echo "<td>" . $class . "</td>";
                                             echo "<td>" . $rollNumber . "</td>";
                                             echo "<td>" . $feesGroup . "</td>";
+                                            echo "<td>" . $courseFee . "</td>";
+                                            echo "<td>" . $pendingAmount . "</td>";
+                                            echo "<td>" . $discount . "</td>";
                                             echo "<td>" . $AmountPaid . "</td>";
+                                            echo "<td>" . $finalPendingAmount . "</td>";
+                                            echo "<td>" . $remark . "</td>";
+
                                             echo "<td>";
                                             echo "<a href='php/billPrint.php?billID=" . $ID . "&studentID=" . $studentID . "' class='btn btn-success btn-sm me-2'><i class='ti ti-printer' target='_blank'></i></a>";
                                             echo "</td>";

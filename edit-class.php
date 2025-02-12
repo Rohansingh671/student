@@ -98,17 +98,17 @@ $userEmail = $_SESSION['userEmail'];
                         <div class="dropdown me-2">
                             <a href="#" class="btn btn-outline-light fw-normal bg-white d-flex align-items-center p-2"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="ti ti-calendar-due me-1"></i>Academic Year : 2024 / 2025
+                                <i class="ti ti-calendar-due me-1"></i>Academic Year : 2081 / 2082
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2023 / 2024
+                                    Academic Year : 2082 / 2083
                                 </a>
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2022 / 2023
+                                    Academic Year : 2083 / 2084
                                 </a>
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2021 / 2022
+                                    Academic Year : 2084 / 2085
                                 </a>
                             </div>
                         </div>
@@ -174,7 +174,7 @@ $userEmail = $_SESSION['userEmail'];
                                                     <p class="text-dark">Teachers</p>
                                                 </a>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" hidden>
                                                 <a href="add-staff.php"
                                                     class="d-block bg-warning-transparent ronded p-2 text-center mb-3 class-hover">
                                                     <div class="avatar avatar-lg rounded-circle mb-2">
@@ -185,7 +185,7 @@ $userEmail = $_SESSION['userEmail'];
                                                     <p class="text-dark">Staffs</p>
                                                 </a>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" hidden>
                                                 <a href="add-invoice.php"
                                                     class="d-block bg-info-transparent ronded p-2 text-center mb-3 class-hover">
                                                     <div class="avatar avatar-lg mb-2">
@@ -358,7 +358,7 @@ $userEmail = $_SESSION['userEmail'];
                                             <p class="text-primary mb-0">Administrator</p>
                                         </div>
                                     </div>
-                                    
+
                                     <hr class="m-0">
                                     <a class="dropdown-item d-inline-flex align-items-center p-2" href="login.php"><i
                                             class="ti ti-login me-2"></i>Logout</a>
@@ -484,9 +484,9 @@ $userEmail = $_SESSION['userEmail'];
                         </li>
                         <li>
                             <ul>
-                            <li class="active">
+                                <li class="active">
                                     <a href="classes.php"><i
-                                            class="ti ti-school-bell"></i><span>Classes</span></a>
+                                            class="ti ti-school-bell"></i><span>Courses</span></a>
                                     <ul hidden>
                                         <li><a href="classes.php">All Classes</a></li>
                                         <li><a href="schedule-classes.php">Schedule</a></li>
@@ -499,7 +499,7 @@ $userEmail = $_SESSION['userEmail'];
                                             Routine</span></a></li>
                                 <li hidden><a href="class-section.php"><i
                                             class="ti ti-square-rotated-forbid-2"></i><span>Section</span></a></li>
-                                <li><a href="class-subject.php"><i class="ti ti-book"></i><span>Subject</span></a></li>
+                                <li><a href="class-subject.php"><i class="ti ti-book"></i><span>Sub-courses</span></a></li>
                                 <li hidden><a href="class-syllabus.php"><i
                                             class="ti ti-book-upload"></i><span>Syllabus</span></a></li>
                                 <li hidden><a href="class-time-table.php"><i class="ti ti-table"></i><span>Time
@@ -1050,16 +1050,16 @@ $userEmail = $_SESSION['userEmail'];
 
                 <div class="d-md-flex d-block align-items-center justify-content-between mb-3">
                     <div class="my-auto mb-2">
-                        <h3 class="mb-1">Edit Class</h3>
+                        <h3 class="mb-1">Edit Course</h3>
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item">
                                     <a href="index.php">Dashboard</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="students.php">Class</a>
+                                    <a href="students.php">Courses</a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">Edit Class</li>
+                                <li class="breadcrumb-item active" aria-current="page">Edit Course</li>
                             </ol>
                         </nav>
                     </div>
@@ -1077,20 +1077,20 @@ $userEmail = $_SESSION['userEmail'];
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
                                             <i class="ti ti-info-square-rounded fs-16"></i>
                                         </span>
-                                        <h4 class="text-dark">Class Information</h4>
+                                        <h4 class="text-dark">Course Information</h4>
                                     </div>
                                 </div>
                                 <div class="card-body pb-1">
                                     <div class="row row-cols-xxl-5 row-cols-md-6">
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Class ID</label>
+                                                <label class="form-label">Course ID</label>
                                                 <input type="text" class="form-control" placeholder="Enter Class ID" value="<?php echo $classID; ?>" name="classID" readonly>
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Class Name</label>
+                                                <label class="form-label">Course Name</label>
                                                 <input type="text" class="form-control" placeholder="Enter Class Name" value="<?php echo  $className; ?>" name="className">
                                             </div>
                                         </div>
@@ -1110,7 +1110,7 @@ $userEmail = $_SESSION['userEmail'];
                             </div>
                             <div class="text-end">
                                 <button type="button" class="btn btn-light me-3">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Save Class</button>
+                                <button type="submit" class="btn btn-primary">Save Course</button>
                             </div>
                         </form>
                     </div>

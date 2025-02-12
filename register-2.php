@@ -88,23 +88,23 @@
                                                             <span class="input-icon-addon">
                                                                 <i class="ti ti-user"></i>
                                                             </span>
-                                                            <input type="text" value="" class="form-control" name="smsUsername" data-parsley-required="true" data-parsley-error-message="Username is required.">
+                                                            <input type="text" value="" class="form-control" name="smsUsername" data-parsley-required="true" data-parsley-error-message="Username is required." placeholder="Your Name">
                                                         </div>
                                                         <label class="form-label">Email Address</label>
                                                         <div class="input-icon mb-3 position-relative">
                                                             <span class="input-icon-addon">
                                                                 <i class="ti ti-mail"></i>
                                                             </span>
-                                                            <input type="text" value="" class="form-control" name="smsEmail" data-parsley-required="true" data-parsley-error-message="Email is required.">
+                                                            <input type="text" value="" class="form-control" name="smsEmail" data-parsley-required="true" data-parsley-error-message="Email is required." placeholder="Your Email Address">
                                                         </div>
                                                         <label class="form-label">Password</label>
                                                         <div class="pass-group mb-3">
-                                                            <input type="password" class="pass-input form-control" name="smsPassword" data-parsley-required="true" data-parsley-error-message="Password is required.">
+                                                            <input type="password" class="pass-input form-control" name="smsPassword" data-parsley-required="true" data-parsley-error-message="Password is required." placeholder="Create Password">
                                                             <span class="ti toggle-password ti-eye-off"></span>
                                                         </div>
                                                         <label class="form-label">Confirm Password</label>
                                                         <div class="pass-group">
-                                                            <input type="password" class="pass-input form-control" name="smsConfirmPassword" data-parsley-required="true" data-parsley-error-message="Confirm Password is required.">
+                                                            <input type="password" class="pass-input form-control" name="smsConfirmPassword" data-parsley-required="true" data-parsley-error-message="Confirm Password is required." placeholder="Confirm Password">
                                                             <span class="ti toggle-password ti-eye-off"></span>
                                                         </div>
                                                     </div>

@@ -98,17 +98,17 @@ $userEmail = $_SESSION['userEmail'];
                         <div class="dropdown me-2">
                             <a href="#" class="btn btn-outline-light fw-normal bg-white d-flex align-items-center p-2"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="ti ti-calendar-due me-1"></i>Academic Year : 2024 / 2025
+                                <i class="ti ti-calendar-due me-1"></i>Academic Year : 2081 / 2082
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2023 / 2024
+                                    Academic Year : 2082 / 2083
                                 </a>
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2022 / 2023
+                                    Academic Year : 2083 / 2084
                                 </a>
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2021 / 2022
+                                    Academic Year : 2084 / 2085
                                 </a>
                             </div>
                         </div>
@@ -174,7 +174,7 @@ $userEmail = $_SESSION['userEmail'];
                                                     <p class="text-dark">Teachers</p>
                                                 </a>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" hidden>
                                                 <a href="add-staff.php"
                                                     class="d-block bg-warning-transparent ronded p-2 text-center mb-3 class-hover">
                                                     <div class="avatar avatar-lg rounded-circle mb-2">
@@ -185,7 +185,7 @@ $userEmail = $_SESSION['userEmail'];
                                                     <p class="text-dark">Staffs</p>
                                                 </a>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" hidden>
                                                 <a href="add-invoice.php"
                                                     class="d-block bg-info-transparent ronded p-2 text-center mb-3 class-hover">
                                                     <div class="avatar avatar-lg mb-2">
@@ -358,7 +358,7 @@ $userEmail = $_SESSION['userEmail'];
                                             <p class="text-primary mb-0">Administrator</p>
                                         </div>
                                     </div>
-                                    
+
                                     <hr class="m-0">
                                     <a class="dropdown-item d-inline-flex align-items-center p-2" href="login.php"><i
                                             class="ti ti-login me-2"></i>Logout</a>
@@ -484,7 +484,7 @@ $userEmail = $_SESSION['userEmail'];
                         </li>
                         <li>
                             <ul>
-                            <li>
+                                <li>
                                     <a href="classes.php"><i
                                             class="ti ti-school-bell"></i><span>Classes</span></a>
                                     <ul hidden>
@@ -492,14 +492,14 @@ $userEmail = $_SESSION['userEmail'];
                                         <li><a href="schedule-classes.php">Schedule</a></li>
                                     </ul>
                                 </li>
-                                <li hidden><a href="class-room.php"><i class="ti ti-building"></i><span>Class
+                                <li hidden><a href="class-room.php"><i class="ti ti-building"></i><span>Courses
                                             Room</span></a>
                                 </li>
                                 <li hidden><a href="class-routine.php"><i class="ti ti-bell-school"></i><span>Class
                                             Routine</span></a></li>
                                 <li hidden><a href="class-section.php"><i
                                             class="ti ti-square-rotated-forbid-2"></i><span>Section</span></a></li>
-                                <li><a href="class-subject.php"><i class="ti ti-book"></i><span>Subject</span></a></li>
+                                <li><a href="class-subject.php"><i class="ti ti-book"></i><span>Sub-courses</span></a></li>
                                 <li hidden><a href="class-syllabus.php"><i
                                             class="ti ti-book-upload"></i><span>Syllabus</span></a></li>
                                 <li hidden><a href="class-time-table.php"><i class="ti ti-table"></i><span>Time
@@ -525,7 +525,7 @@ $userEmail = $_SESSION['userEmail'];
                         <li>
                             <ul>
                                 <li class="submenu">
-                                    <a href="javascript:void(0);"   class="active"><i class="ti ti-report-money"></i><span>Fees
+                                    <a href="javascript:void(0);" class="active"><i class="ti ti-report-money"></i><span>Fees
                                             Collection</span><span class="menu-arrow"></span></a>
                                     <ul>
                                         <li><a href="fees-group.php" class="active">Fees Group</a></li>

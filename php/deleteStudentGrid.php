@@ -23,7 +23,9 @@ if (!$stmt) {
 
 $stmt->bind_param("i", $sid);
 if ($stmt->execute()) {
-    echo '<meta http-equiv="refresh" content="0; url=/student/student-grid.php" />';
+    // Redirect to the class-subject page
+    header("Location: /student/student-grid.php");
+    exit;
 } else {
     echo "Failed to Delete Record";
 }
@@ -31,5 +33,3 @@ if ($stmt->execute()) {
 // Close the statement and database connection
 $stmt->close();
 db_close($mysqli);
-
-?>

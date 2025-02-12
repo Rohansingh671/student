@@ -6,21 +6,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if required fields are present and not empty
     if (!empty($_POST['classID']) && !empty($_POST['className'])) {
-        
+
         // Assign variables after basic sanitization
         $classID = htmlspecialchars(trim($_POST['classID']));
         $className = htmlspecialchars(trim($_POST['className']));
-        
+
         // Set classStatus as 'Active' if the switch is on, otherwise 'Inactive'
         $classStatus = !empty($_POST['classStatus']) ? htmlspecialchars(trim($_POST['classStatus'])) : 'Inactive';
 
         // Validate Class ID and Class Name (only letters, numbers, spaces allowed)
-        if (!preg_match("/^[a-zA-Z0-9\s]+$/", $classID) || !preg_match("/^[a-zA-Z0-9\s]+$/", $className)) {
-            echo "Class ID and Class Name can only contain letters, numbers, and spaces.";
+        if (
+            !preg_match("/^[\p{Devanagari}a-zA-Z0-9\s]+$/u", $classID) ||
+            !preg_match("/^[\p{Devanagari}a-zA-Z0-9\s]+$/u", $className)
+        ) {
+            echo "Class ID and Class Name can only contain letters (including Nepali), numbers, and spaces.";
             exit;
         }
 
-        
+
+
         // Database connection
         $mysqli = db_connect();
         if (!$mysqli) {
@@ -46,11 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Close statement and database connection
         $stmt->close();
         $mysqli->close();
-
     } else {
         echo "Required fields are missing.";
     }
 } else {
     echo "Invalid request method.";
 }
-?>

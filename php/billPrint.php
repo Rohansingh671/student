@@ -5,24 +5,20 @@ require_once('databaseConnection.php');
 $mysqli = db_connect();
 
 if ($mysqli) {
-
-    if(isset($_GET['billID']) && isset($_GET['studentID'])){
+    if (isset($_GET['billID']) && isset($_GET['studentID'])) {
         $billID = $_GET['billID'];
         $studentID = $_GET['studentID'];
 
-        $stmt = $mysqli->prepare("SELECT addstudent.fnameOfStudent, addstudent.lnameOfStudent, addstudent.class, addstudent.rollNumber, addstudent.feesGroup, feescollection.AmountPaid FROM `feescollection` INNER JOIN addstudent ON addstudent.ID = feescollection.StudentID WHERE feescollection.ID = ? AND feescollection.StudentID = ?;");
+        $stmt = $mysqli->prepare("SELECT addstudent.fnameOfStudent, addstudent.lnameOfStudent, addstudent.class, addstudent.rollNumber, addstudent.feesGroup, feescollection.courseFee, feescollection.pendingAmount, feescollection.finalPendingAmount, feescollection.discount, feescollection.AmountPaid FROM `feescollection` INNER JOIN addstudent ON addstudent.ID = feescollection.StudentID WHERE feescollection.ID = ? AND feescollection.StudentID = ?;");
         $stmt->bind_param("ii", $billID, $studentID);
         $stmt->execute();
         $stmt->store_result();
-        $stmt->bind_result($fnameOfStudent, $lnameOfStudent, $class, $rollNumber, $feesGroup, $AmountPaid);
+        $stmt->bind_result($fnameOfStudent, $lnameOfStudent, $class, $rollNumber, $feesGroup, $courseFee, $pendingAmount, $finalPendingAmount, $discount, $AmountPaid);
         $stmt->fetch();
         $stmt->close();
-        
-    }
-    else{
+    } else {
         echo "Invalid parameters";
     }
-
 
     // Create new PDF document
     $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -32,7 +28,7 @@ if ($mysqli) {
     $pdf->SetAuthor('Haitomns Groups Private Limited');
     $pdf->SetTitle('Estimate Bill');
     $pdf->SetSubject('Bill');
-    $pdf->SetKeywords('Student BIll, PDF, bill, estimate');
+    $pdf->SetKeywords('Student Bill, PDF, bill, estimate');
 
     // Set default header and footer data
     $pdf->setPrintHeader(false);
@@ -75,23 +71,31 @@ if ($mysqli) {
     // Add Student Information
     $pdf->SetFont('helvetica', '', 12);
     $pdf->Ln(5);
-    $pdf->Cell(0, 10, 'Student Name: '.$fnameOfStudent.' '.$lnameOfStudent.'', 0, 1, 'L');
-    $pdf->Cell(0, 10, 'Class: '.$class.'', 0, 1, 'L');
-    $pdf->Cell(0, 10, 'Roll No: '.$rollNumber.'', 0, 1, 'L');
+    $pdf->Cell(0, 10, 'Student Name: ' . $fnameOfStudent . ' ' . $lnameOfStudent . '', 0, 1, 'L');
+    $pdf->Cell(0, 10, 'Course: ' . $class . '', 0, 1, 'L');
+    $pdf->Cell(0, 10, 'Roll No: ' . $rollNumber . '', 0, 1, 'L');
 
     // Add Table Header
     $pdf->Ln(10);
     $pdf->SetFont('helvetica', 'B', 12);
     $pdf->Cell(20, 10, 'SN', 1, 0, 'C');
-    $pdf->Cell(80, 10, 'Fee Group', 1, 0, 'C');
-    $pdf->Cell(60, 10, 'Amount Paid', 1, 1, 'C');
+    $pdf->Cell(50, 10, 'Fee Group', 1, 0, 'C');
+    $pdf->Cell(22, 10, 'T.Fee', 1, 0, 'C');
+    $pdf->Cell(30, 10, 'Pend. Amt.', 1, 0, 'C');
+    $pdf->Cell(20, 10, 'Dis.', 1, 0, 'C');
+    $pdf->Cell(22, 10, 'Amt. Paid', 1, 0, 'C');
+    $pdf->Cell(25, 10, 'Final Pend.', 1, 1, 'C');
 
     // Add Table Data
     $pdf->SetFont('helvetica', '', 12);
     for ($i = 1; $i <= 1; $i++) {
         $pdf->Cell(20, 10, $i, 1, 0, 'C');
-        $pdf->Cell(80, 10, ''.$feesGroup.'', 1, 0, 'C');
-        $pdf->Cell(60, 10, ''.$AmountPaid.'', 1, 1, 'C');
+        $pdf->Cell(50, 10, '' . $feesGroup . '', 1, 0, 'C');
+        $pdf->Cell(22, 10, '' . $courseFee . '', 1, 0, 'C');
+        $pdf->Cell(30, 10, '' . $pendingAmount . '', 1, 0, 'C');
+        $pdf->Cell(20, 10, '' . $discount . '', 1, 0, 'C');
+        $pdf->Cell(22, 10, '' . $AmountPaid . '', 1, 0, 'C');
+        $pdf->Cell(25, 10, '' . $finalPendingAmount . '', 1, 1, 'C');
     }
 
     // Add Footer "Prepared By"
@@ -104,3 +108,4 @@ if ($mysqli) {
 } else {
     echo "Connection failed";
 }
+?>

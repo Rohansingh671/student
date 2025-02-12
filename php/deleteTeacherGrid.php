@@ -1,3 +1,4 @@
+
 <?php
 require_once 'databaseConnection.php';
 
@@ -9,7 +10,7 @@ if (!$mysqli) {
     die("Database connection failed: " . mysqli_connect_error());
 }
 
-// Prepare the SQL statement to delete a product by ID
+// Prepare the SQL statement to delete a teacher by ID
 $stmt = $mysqli->prepare("DELETE FROM `addteacher` WHERE `ID` = ?");
 if (!$stmt) {
     die("Error preparing statement: " . $mysqli->error);
@@ -18,7 +19,9 @@ if (!$stmt) {
 // Bind the parameter and execute the statement
 $stmt->bind_param("i", $sid);
 if ($stmt->execute()) {
-    echo '<meta http-equiv="refresh" content="0; url=/student/teacher-grid.php" />';
+    // Redirect to the teacher grid page
+    header("Location: /student/teacher-grid.php");
+    exit;
 } else {
     echo "Failed to Delete Record";
 }
@@ -27,3 +30,4 @@ if ($stmt->execute()) {
 $stmt->close();
 db_close($mysqli);
 ?>
+

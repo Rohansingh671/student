@@ -12,19 +12,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Check if required fields are present and not empty
-    if (!empty($_POST['feesGroupID']) && !empty($_POST['feesGroup']) && !empty($_POST['feesGroupAmount']) && !empty($_POST['remark'])) {
+    if (!empty($_POST['feesGroupID']) && !empty($_POST['feesGroup']) && !empty($_POST['feesGroupAmount'])) {
         
         // Assign variables after basic sanitization
         $feesGroupID = htmlspecialchars(trim($_POST['feesGroupID']));
         $feesGroup = htmlspecialchars(trim($_POST['feesGroup']));
         $feesGroupAmount = htmlspecialchars(trim($_POST['feesGroupAmount']));
-        $remark = htmlspecialchars(trim($_POST['remark']));
+        $remark = isset($_POST['remark']) ? htmlspecialchars(trim($_POST['remark'])) : null; // 'remark' is optional
         
         // Set classStatus as 'Active' if the switch is on, otherwise 'Inactive'
         $feesGroupStatus = !empty($_POST['feesGroupStatus']) ? htmlspecialchars(trim($_POST['feesGroupStatus'])) : 'Inactive';
 
         // Validate Class ID and Class Name (only letters, numbers, spaces allowed)
-        if (!preg_match("/^[a-zA-Z0-9\s]+$/", $feesGroupID) || !preg_match("/^[a-zA-Z0-9\s]+$/", $feesGroup)) {
+        if (!preg_match("/^[a-zA-Z0-9\s]+$/", $feesGroupID) || !preg_match("/^[\p{Devanagari}a-zA-Z0-9\s\(\)]+$/u", $feesGroup)) {
             echo "feesGroup ID and feesGroup Name can only contain letters, numbers, and spaces.";
             exit;
         }

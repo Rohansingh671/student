@@ -96,18 +96,19 @@ $userEmail = $_SESSION['userEmail'];
 
                     <div class="d-flex align-items-center">
                         <div class="dropdown me-2">
-                            <a href="#" class="btn btn-outline-light fw-normal bg-white d-flex align-items-center p-2" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="ti ti-calendar-due me-1"></i>Academic Year : 2024 / 2025
+                            <a href="#" class="btn btn-outline-light fw-normal bg-white d-flex align-items-center p-2"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="ti ti-calendar-due me-1"></i>Academic Year : 2081 / 2082
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2023 / 2024
+                                    Academic Year : 2082 / 2083
                                 </a>
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2022 / 2023
+                                    Academic Year : 2083 / 2084
                                 </a>
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2021 / 2022
+                                    Academic Year : 2084 / 2085
                                 </a>
                             </div>
                         </div>
@@ -159,7 +160,7 @@ $userEmail = $_SESSION['userEmail'];
                                                     <p class="text-dark">Teachers</p>
                                                 </a>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" hidden>
                                                 <a href="add-staff.php" class="d-block bg-warning-transparent ronded p-2 text-center mb-3 class-hover">
                                                     <div class="avatar avatar-lg rounded-circle mb-2">
                                                         <span class="d-inline-flex align-items-center justify-content-center w-100 h-100 bg-warning rounded-circle"><i class="ti ti-users-group"></i></span>
@@ -167,7 +168,7 @@ $userEmail = $_SESSION['userEmail'];
                                                     <p class="text-dark">Staffs</p>
                                                 </a>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" hidden>
                                                 <a href="add-invoice.php" class="d-block bg-info-transparent ronded p-2 text-center mb-3 class-hover">
                                                     <div class="avatar avatar-lg mb-2">
                                                         <span class="d-inline-flex align-items-center justify-content-center w-100 h-100 bg-info rounded-circle"><i class="ti ti-license"></i></span>
@@ -324,7 +325,7 @@ $userEmail = $_SESSION['userEmail'];
                                             <p class="text-primary mb-0">Administrator</p>
                                         </div>
                                     </div>
-                                    
+
                                     <hr class="m-0">
                                     <a class="dropdown-item d-inline-flex align-items-center p-2" href="login.php"><i class="ti ti-login me-2"></i>Logout</a>
                                 </div>
@@ -434,7 +435,7 @@ $userEmail = $_SESSION['userEmail'];
                             <ul>
                                 <li>
                                     <a href="classes.php"><i
-                                            class="ti ti-school-bell"></i><span>Classes</span></a>
+                                            class="ti ti-school-bell"></i><span>Courses</span></a>
                                     <ul hidden>
                                         <li><a href="classes.php">All Classes</a></li>
                                         <li><a href="schedule-classes.php">Schedule</a></li>
@@ -445,7 +446,7 @@ $userEmail = $_SESSION['userEmail'];
                                 <li hidden><a href="class-routine.php"><i class="ti ti-bell-school"></i><span>Class
                                             Routine</span></a></li>
                                 <li hidden><a href="class-section.php"><i class="ti ti-square-rotated-forbid-2"></i><span>Section</span></a></li>
-                                <li><a href="class-subject.php"><i class="ti ti-book"></i><span>Subject</span></a></li>
+                                <li><a href="class-subject.php"><i class="ti ti-book"></i><span>Sub-courses</span></a></li>
                                 <li hidden><a href="class-syllabus.php"><i class="ti ti-book-upload"></i><span>Syllabus</span></a></li>
                                 <li hidden><a href="class-time-table.php"><i class="ti ti-table"></i><span>Time
                                             Table</span></a></li>
@@ -1004,43 +1005,43 @@ $userEmail = $_SESSION['userEmail'];
                                     <div class="row row-cols-xxl-5 row-cols-md-6">
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-4">
-                                                <label class="form-label">Academic Year (mandatory)</label>
+                                                <label class="form-label">Academic Year</label>
                                                 <select class="select" name="academic_year">
                                                     <option>Choose</option>
-                                                    <option <?php if ($academic_year == 'June 2024/25') {
+                                                    <option <?php if ($academic_year == 'Baisakh 2081/82') {
                                                                 echo 'selected';
-                                                            } ?>>June 2024/25</option>
-                                                    <option <?php if ($academic_year == 'June 2023/24') {
+                                                            } ?>>Baisakh 2081/82</option>
+                                                    <option <?php if ($academic_year == 'Baisakh 2082/83') {
                                                                 echo 'selected';
-                                                            } ?>>June 2023/24</option>
-                                                    <option <?php if ($academic_year == 'Female') {
+                                                            } ?>>Baisakh 2082/83</option>
+                                                    <option <?php if ($academic_year == 'Baisakh 2083/84') {
                                                                 echo 'selected';
-                                                            } ?>>June 2022/23</option>
+                                                            } ?>>Baisakh 2083/84</option>
                                                 </select>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-4">
-                                                <label class="form-label">Admission Number (mandatory)</label>
+                                                <label class="form-label">Admission Number</label>
                                                 <input type="text" class="form-control" name="admission_number" value="<?php echo $admission_number; ?>" readonly>
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-4">
-                                                <label class="form-label">Admission Date (mandatory)</label>
+                                                <label class="form-label">Admission Date</label>
                                                 <input type="date" class="form-control" name="admission_date" value="<?php echo $admission_date; ?>">
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-4">
-                                                <label class="form-label">Roll Number (mandatory)</label>
-                                                <input type="text" class="form-control" name="roll_number" value="<?php echo $roll_number; ?>">
+                                                <label class="form-label">Roll Number</label>
+                                                <input type="text" class="form-control" name="roll_number" value="<?php echo $roll_number; ?>" readonly>
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-4">
-                                                <label class="form-label">Status (mandatory)</label>
+                                                <label class="form-label">Status</label>
                                                 <select class="select" name="status">
                                                     <option>Select</option>
                                                     <option value="Active" <?php if ($status == 'Active') {
@@ -1054,13 +1055,13 @@ $userEmail = $_SESSION['userEmail'];
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-4">
-                                                <label class="form-label">First Name (mandatory)</label>
+                                                <label class="form-label">First Name</label>
                                                 <input type="text" class="form-control" name="first_name" value="<?php echo $first_name; ?>">
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-4">
-                                                <label class="form-label">Last Name (mandatory)</label>
+                                                <label class="form-label">Last Name</label>
                                                 <input type="text" class="form-control" name="last_name" value="<?php echo $last_name; ?>">
                                             </div>
                                         </div>
@@ -1069,7 +1070,7 @@ $userEmail = $_SESSION['userEmail'];
                                             require_once 'php/classDataForStudentForm.php';
                                             ?>
                                             <div class="mb-4">
-                                                <label class="form-label">Course (mandatory)</label>
+                                                <label class="form-label">Course</label>
                                                 <select class="select" name="class">
                                                     <option>Select</option>
                                                     <?php
@@ -1091,7 +1092,7 @@ $userEmail = $_SESSION['userEmail'];
                                             require_once 'php/subjectDataForStudentForm.php';
                                             ?>
                                             <div class="mb-3">
-                                                <label class="form-label">Sub-Course (mandatory)</label>
+                                                <label class="form-label">Sub-Course</label>
                                                 <select class="select" name="section">
                                                     <option>Select</option>
                                                     <?php
@@ -1108,7 +1109,7 @@ $userEmail = $_SESSION['userEmail'];
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-4">
-                                                <label class="form-label">Gender (mandatory)</label>
+                                                <label class="form-label">Gender</label>
                                                 <select class="select" name="gender">
                                                     <option>Select</option>
                                                     <option value="Male" <?php if ($gender == 'Male') {
@@ -1122,65 +1123,121 @@ $userEmail = $_SESSION['userEmail'];
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-4">
-                                                <label class="form-label">Date of Birth (mandatory)</label>
+                                                <label class="form-label">Date of Birth</label>
                                                 <input type="date" class="form-control" name="dob" value="<?php echo $dob; ?>">
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-4">
+                                                <label class="form-label">Primary Contact Number</label>
+                                                <input type="text" class="form-control" name="primary_contact" value="<?php echo $primary_contact; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6">
+                                            <?php
+                                            require_once 'php/feesGroupDataForStudentForm.php';
+                                            ?>
+                                            <div class="mb-3">
+                                                <label class="form-label">Fees Group</label>
+                                                <select class="select" name="feesGroup[]" multiple>
+                                                    <option value="">Please Select</option>
+                                                    <?php
+                                                    foreach ($groupselected as $groupsel) {
+                                                        echo "<option value='" . htmlspecialchars($groupsel['feesGroupID']) . "' selected>" . htmlspecialchars($groupsel['feesGroup']) . "</option>";
+                                                    }
+
+                                                    foreach ($groups as $group) {
+                                                        echo "<option value='" . htmlspecialchars($group['feesGroupID']) . "'>" . htmlspecialchars($group['feesGroup']) . "</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6" hidden>
+                                            <div class="mb-4">
+                                                <label class="form-label">Email Address</label>
+                                                <input type="email" class="form-control" name="email" value="<?php echo $email; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6" hidden>
+                                            <div class="mb-4">
+                                                <label class="form-label">Mother Tongue</label>
+                                                <select class="select" name="mother_tongue">
+                                                    <option>Select</option>
+                                                    <option value="Hindi" <?php if ($mother_tongue == 'Hindi') {
+                                                                                echo 'selected';
+                                                                            } ?>>Hindi</option>
+                                                    <option value="English" <?php if ($mother_tongue == 'English') {
+                                                                                echo 'selected';
+                                                                            } ?>>English</option>
+                                                    <option value="Nepali" <?php if ($mother_tongue == 'Nepali') {
+                                                                                echo 'selected';
+                                                                            } ?>>Nepali</option>
+                                                    <option value="Bhojpuri" <?php if ($mother_tongue == 'Bhojpuri') {
+                                                                                    echo 'selected';
+                                                                                } ?>>Bhojpuri</option>
+                                                    <option value="Maithli" <?php if ($mother_tongue == 'Maithli') {
+                                                                                echo 'selected';
+                                                                            } ?>>Maithli</option>
+                                                    <option value="Newari" <?php if ($mother_tongue == 'Newari') {
+                                                                                echo 'selected';
+                                                                            } ?>>Newari</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6" hidden>
+                                            <div class="mb-4">
+                                                <label class="form-label">Language Known</label>
+                                                <input class="input-tags form-control" type="text" data-role="tagsinput" name="languages_known" value="<?php echo $languages_known; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="mb-4">
+                                                <label class="form-label">Citizenship No.</label>
+                                                <input type="text" class="form-control" name="ifscNumber" value="<?php echo $ifscNumber; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6" hidden>
+                                            <div class="mb-4">
                                                 <label class="form-label">Blood Group</label>
                                                 <select class="select" name="blood_group">
-                                                    <option>Select</option>
-                                                    <option value="A+" <?php if ($blood_group == 'A+') {
-                                                                            echo 'selected';
-                                                                        } ?>>A+</option>
-                                                    <option value="A-" <?php if ($blood_group == 'A-') {
-                                                                            echo 'selected';
-                                                                        } ?>>A-</option>
-                                                    <option value="B+" <?php if ($blood_group == 'B+') {
-                                                                            echo 'selected';
-                                                                        } ?>>B+</option>
-                                                    <option value="B-" <?php if ($blood_group == 'B-') {
-                                                                            echo 'selected';
-                                                                        } ?>>B-</option>
-                                                    <option value="AB+" <?php if ($blood_group == 'AB+') {
-                                                                            echo 'selected';
-                                                                        } ?>>AB+</option>
-                                                    <option value="AB-" <?php if ($blood_group == 'AB-') {
-                                                                            echo 'selected';
-                                                                        } ?>>AB-</option>
-                                                    <option value="O+" <?php if ($blood_group == 'O+') {
-                                                                            echo 'selected';
-                                                                        } ?>>O+</option>
-                                                    <option value="O-" <?php if ($blood_group == 'O-') {
-                                                                            echo 'selected';
-                                                                        } ?>>O-</option>
+                                                    <option value="" <?php if (empty($blood_group)) echo 'selected'; ?>>Select</option>
+                                                    <option value="O +ve" <?php if ($blood_group == 'O +ve') echo 'selected'; ?>>O +ve</option>
+                                                    <option value="O -ve" <?php if ($blood_group == 'O -ve') echo 'selected'; ?>>O -ve</option>
+                                                    <option value="A +ve" <?php if ($blood_group == 'A +ve') echo 'selected'; ?>>A +ve</option>
+                                                    <option value="A -ve" <?php if ($blood_group == 'A -ve') echo 'selected'; ?>>A -ve</option>
+                                                    <option value="B +ve" <?php if ($blood_group == 'B +ve') echo 'selected'; ?>>B +ve</option>
+                                                    <option value="B -ve" <?php if ($blood_group == 'B -ve') echo 'selected'; ?>>B -ve</option>
+                                                    <option value="AB +ve" <?php if ($blood_group == 'AB +ve') echo 'selected'; ?>>AB +ve</option>
+                                                    <option value="AB -ve" <?php if ($blood_group == 'AB -ve') echo 'selected'; ?>>AB -ve</option>
                                                 </select>
 
                                             </div>
                                         </div>
+
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-4">
-                                                <label class="form-label">House</label>
+                                                <label class="form-label">Batch Shift</label>
                                                 <select class="select" name="house">
                                                     <option>Select</option>
-                                                    <option value="Red" <?php if ($house == 'Red') {
-                                                                            echo 'selected';
-                                                                        } ?>>Red</option>
-                                                    <option value="Blue" <?php if ($house == 'Blue') {
+                                                    <option value="Morning" <?php if ($house == 'Morning') {
                                                                                 echo 'selected';
-                                                                            } ?>>Blue</option>
-                                                    <option value="Green" <?php if ($house == 'Green') {
+                                                                            } ?>>Morning</option>
+                                                    <option value="Afternoon" <?php if ($house == 'Afternoon') {
+                                                                                    echo 'selected';
+                                                                                } ?>>Afternoon</option>
+                                                    <option value="Evening" <?php if ($house == 'Evening') {
                                                                                 echo 'selected';
-                                                                            } ?>>Green</option>
-                                                    <option value="Yellow" <?php if ($house == 'Yellow') {
+                                                                            } ?>>Evening</option>
+                                                    <option value="Night" <?php if ($house == 'Night') {
                                                                                 echo 'selected';
-                                                                            } ?>>Yellow</option>
+                                                                            } ?>>Night</option>
                                                 </select>
 
                                             </div>
                                         </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
+                                        <div class="col-xxl col-xl-3 col-md-6" hidden>
                                             <div class="mb-4">
                                                 <label class="form-label">Religion</label>
                                                 <select class="select" name="religion">
@@ -1210,279 +1267,15 @@ $userEmail = $_SESSION['userEmail'];
 
                                             </div>
                                         </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <?php
-                                            require_once 'php/feesGroupDataForStudentForm.php';
-                                            ?>
-                                            <div class="mb-3">
-                                                <label class="form-label">Fees Group &nbsp; <i class="fa-sharp fa-solid fa-star"></i></label>
-                                                <select class="select" name="feesGroup[]" multiple>
-                                                    <option value="">Select</option>
-                                                    <?php
-                                                    foreach ($groups as $group) {
-                                                        echo "<option value='" . htmlspecialchars($group['feesGroup']) . "'>" . htmlspecialchars($group['feesGroup']) . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Primary Contact Number</label>
-                                                <input type="text" class="form-control" name="primary_contact" value="<?php echo $primary_contact; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Email Address</label>
-                                                <input type="email" class="form-control" name="email" value="<?php echo $email; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
+                                        <div class="col-xxl col-xl-3 col-md-6" hidden>
                                             <div class="mb-4">
                                                 <label class="form-label">Caste</label>
                                                 <input type="text" class="form-control" name="caste" value="<?php echo $caste; ?>">
                                             </div>
                                         </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Mother Tongue</label>
-                                                <select class="select" name="mother_tongue">
-                                                    <option>Select</option>
-                                                    <option value="Hindi" <?php if ($mother_tongue == 'Hindi') {
-                                                                                echo 'selected';
-                                                                            } ?>>Hindi</option>
-                                                    <option value="English" <?php if ($mother_tongue == 'English') {
-                                                                                echo 'selected';
-                                                                            } ?>>English</option>
-                                                    <option value="Bengali" <?php if ($mother_tongue == 'Bengali') {
-                                                                                echo 'selected';
-                                                                            } ?>>Bengali</option>
-                                                    <option value="Telugu" <?php if ($mother_tongue == 'Telugu') {
-                                                                                echo 'selected';
-                                                                            } ?>>Telugu</option>
-                                                    <option value="Tamil" <?php if ($mother_tongue == 'Tamil') {
-                                                                                echo 'selected';
-                                                                            } ?>>Tamil</option>
-                                                    <option value="Gujarati" <?php if ($mother_tongue == 'Gujarati') {
-                                                                                    echo 'selected';
-                                                                                } ?>>Gujarati</option>
-                                                    <option value="Marathi" <?php if ($mother_tongue == 'Marathi') {
-                                                                                echo 'selected';
-                                                                            } ?>>Marathi</option>
-                                                    <option value="Punjabi" <?php if ($mother_tongue == 'Punjabi') {
-                                                                                echo 'selected';
-                                                                            } ?>>Punjabi</option>
-                                                    <option value="Kannada" <?php if ($mother_tongue == 'Kannada') {
-                                                                                echo 'selected';
-                                                                            } ?>>Kannada</option>
-                                                    <option value="Malayalam" <?php if ($mother_tongue == 'Malayalam') {
-                                                                                    echo 'selected';
-                                                                                } ?>>Malayalam</option>
-                                                    <option value="Other" <?php if ($mother_tongue == 'Other') {
-                                                                                echo 'selected';
-                                                                            } ?>>Other</option>
-                                                </select>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Language Known</label>
-                                                <input class="input-tags form-control" type="text" data-role="tagsinput" name="languages_known" value="<?php echo $languages_known; ?>">
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="card">
-                                <div class="card-header bg-light">
-                                    <div class="d-flex align-items-center">
-                                        <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-                                            <i class="ti ti-user-shield fs-16"></i>
-                                        </span>
-                                        <h4 class="text-dark">Parents &amp; Guardian Information</h4>
-                                    </div>
-                                </div>
-                                <div class="card-body pb-0">
-                                    <div class="border-bottom mb-4">
-                                        <h5 class="mb-3">Father’s Info</h5>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="d-flex align-items-center flex-wrap row-gap-3 mb-4">
-                                                    <div class="d-flex align-items-center justify-content-center avatar avatar-xxl border border-dashed me-2 flex-shrink-0 text-dark frames">
-                                                        <img src="<?php echo $father_image_path; ?>">
-                                                    </div>
-                                                    <div class="profile-upload">
-                                                        <div class="profile-uploader d-flex align-items-center">
-                                                            <div class="drag-upload-btn mb-3">
-                                                                Upload
-                                                                <input type="file" class="form-control image-sign" name="father_image" multiple="" value="<?php echo $father_image_path; ?>">
-                                                            </div>
-                                                            <a href="javascript:void(0);" class="btn btn-primary mb-3">Remove</a>
-                                                        </div>
-                                                        <p class="fs-12">Upload image size 4MB, Format JPG, PNG, SVG</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Father Name</label>
-                                                    <input type="text" class="form-control" name="father_name" value="<?php echo $father_name; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Email</label>
-                                                    <input type="text" class="form-control" name="father_email" value="<?php echo $fatherEmail; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Phone Number</label>
-                                                    <input type="text" class="form-control" name="father_contact" value="<?php echo $father_contact; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Father Occupation</label>
-                                                    <input type="text" class="form-control" name="father_occupation" value="<?php echo $father_occupation; ?>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="border-bottom mb-4">
-                                        <h5 class="mb-3">Mother’s Info</h5>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="d-flex align-items-center flex-wrap row-gap-3 mb-4">
-                                                    <div class="d-flex align-items-center justify-content-center avatar avatar-xxl border border-dashed me-2 flex-shrink-0 text-dark frames">
-                                                        <img src="<?php echo $mother_image_path; ?>">
-                                                    </div>
-                                                    <div class="profile-upload">
-                                                        <div class="profile-uploader d-flex align-items-center">
-                                                            <div class="drag-upload-btn mb-3">
-                                                                Upload
-                                                                <input type="file" class="form-control image-sign" multiple="" name="mother_image" value="<?php echo $mother_image_path; ?>">
-                                                            </div>
-                                                            <a href="javascript:void(0);" class="btn btn-primary mb-3">Remove</a>
-                                                        </div>
-                                                        <p class="fs-12">Upload image size 4MB, Format JPG, PNG, SVG</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Mother Name</label>
-                                                    <input type="text" class="form-control" name="mother_name" value="<?php echo $mother_name; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Email</label>
-                                                    <input type="text" class="form-control" name="mother_email" value="<?php echo $motherEmail; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Phone Number</label>
-                                                    <input type="text" class="form-control" name="mother_contact" value="<?php echo $mother_contact; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Mother Occupation</label>
-                                                    <input type="text" class="form-control" name="mother_occupation" value="<?php echo $mother_occupation; ?>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h5 class="mb-3">Guardian Details</h5>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="mb-2" hidden>
-                                                    <div class="d-flex align-items-center flex-wrap">
-                                                        <label class="form-label text-dark fw-normal me-2">If Guardian Is</label>
-                                                        <div class="form-check me-3 mb-2">
-                                                            <input class="form-check-input" type="radio" name="guardian" id="parents" checked="">
-                                                            <label class="form-check-label" for="parents">
-                                                                Parents
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check me-3 mb-2">
-                                                            <input class="form-check-input" type="radio" name="guardian" id="guardian">
-                                                            <label class="form-check-label" for="guardian">
-                                                                Guardian
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check mb-2">
-                                                            <input class="form-check-input" type="radio" name="guardian" id="other">
-                                                            <label class="form-check-label" for="other">
-                                                                Others
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex align-items-center flex-wrap row-gap-3 mb-4">
-                                                    <div class="d-flex align-items-center justify-content-center avatar avatar-xxl border border-dashed me-2 flex-shrink-0 text-dark frames">
-                                                        <img src="<?php echo $guardian_image_path; ?>">
-                                                    </div>
-                                                    <div class="profile-upload">
-                                                        <div class="profile-uploader d-flex align-items-center">
-                                                            <div class="drag-upload-btn mb-3">
-                                                                Upload
-                                                                <input type="file" class="form-control image-sign" multiple="" name="guardian_image" value="<?php echo $guardian_image_path; ?>">
-                                                            </div>
-                                                            <a href="javascript:void(0);" class="btn btn-primary mb-3">Remove</a>
-                                                        </div>
-                                                        <p class="fs-12">Upload image size 4MB, Format JPG, PNG, SVG</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Guardian Name</label>
-                                                    <input type="text" class="form-control" name="guardian_name" value="<?php echo $guardian_name; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Guardian Relation</label>
-                                                    <input type="text" class="form-control" name="guardian_relation" value="<?php echo $guardian_relation; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Phone Number</label>
-                                                    <input type="text" class="form-control" name="guardian_contact" value="<?php echo $guardian_contact; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Email</label>
-                                                    <input type="email" class="form-control" name="guardian_email" value="<?php echo $guardianEmail; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Occupation</label>
-                                                    <input type="text" class="form-control" name="guardian_occupation" value="<?php echo $guardian_occupation; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-4">
-                                                    <label class="form-label">Address</label>
-                                                    <input type="text" class="form-control" name="guardian_address" value="<?php echo $guardian_address; ?>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
 
                             <div class="card" hidden>
                                 <div class="card-header bg-light">
@@ -1575,15 +1368,13 @@ $userEmail = $_SESSION['userEmail'];
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="card">
                                 <div class="card-header bg-light">
                                     <div class="d-flex align-items-center">
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
                                             <i class="ti ti-map fs-16"></i>
                                         </span>
-                                        <h4 class="text-dark">Address (all mandatory)</h4>
+                                        <h4 class="text-dark">Address</h4>
                                     </div>
                                 </div>
                                 <div class="card-body pb-0">
@@ -1639,9 +1430,96 @@ $userEmail = $_SESSION['userEmail'];
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="card" hidden>
+                                <div class="card-header bg-light">
+                                    <div class="d-flex align-items-center">
+                                        <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
+                                            <i class="ti ti-building fs-16"></i>
+                                        </span>
+                                        <h4 class="text-dark">Previous School Details</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-0">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-4">
+                                                <label class="form-label">School Name</label>
+                                                <input type="text" class="form-control" name="previousSchoolName" value="<?php echo $previousSchoolName; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-4">
+                                                <label class="form-label">Address</label>
+                                                <input type="text" class="form-control" name="previousSchoolAddress" value="<?php echo $previousSchoolAddress; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="card">
+                                <div class="card-header bg-light">
+                                    <div class="d-flex align-items-center">
+                                        <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
+                                            <i class="ti ti-user-shield fs-16"></i>
+                                        </span>
+                                        <h4 class="text-dark">Parents &amp; Guardian Information</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-0">
+                                    <div class="border-bottom mb-4">
+                                        <h5 class="mb-3">Father’s Info</h5>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="d-flex align-items-center flex-wrap row-gap-3 mb-4">
+                                                    <div class="d-flex align-items-center justify-content-center avatar avatar-xxl border border-dashed me-2 flex-shrink-0 text-dark frames">
+                                                        <img src="<?php echo $father_image_path; ?>">
+                                                    </div>
+                                                    <div class="profile-upload">
+                                                        <div class="profile-uploader d-flex align-items-center">
+                                                            <div class="drag-upload-btn mb-3">
+                                                                Upload
+                                                                <input type="file" class="form-control image-sign" name="father_image" multiple="" value="<?php echo $father_image_path; ?>">
+                                                            </div>
+                                                            <a href="javascript:void(0);" class="btn btn-primary mb-3">Remove</a>
+                                                        </div>
+                                                        <p class="fs-12">Upload image size 4MB, Format JPG, PNG, SVG</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="mb-4">
+                                                    <label class="form-label">Father Name</label>
+                                                    <input type="text" class="form-control" name="father_name" value="<?php echo $father_name; ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="mb-4">
+                                                    <label class="form-label">Email</label>
+                                                    <input type="text" class="form-control" name="father_email" value="<?php echo $fatherEmail; ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="mb-4">
+                                                    <label class="form-label">Phone Number</label>
+                                                    <input type="text" class="form-control" name="father_contact" value="<?php echo $father_contact; ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="mb-4">
+                                                    <label class="form-label">Father Occupation</label>
+                                                    <input type="text" class="form-control" name="father_occupation" value="<?php echo $father_occupation; ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-end" style="margin-bottom: 10px;">
+                                <button type="button" class="btn btn-light me-3">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                            <div class="card" hidden>
                                 <div class="card-header bg-light d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center">
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
@@ -1696,7 +1574,7 @@ $userEmail = $_SESSION['userEmail'];
                             </div>
 
 
-                            <div class="card">
+                            <div class="card" hidden>
                                 <div class="card-header bg-light d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center">
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
@@ -1741,7 +1619,7 @@ $userEmail = $_SESSION['userEmail'];
                             </div>
 
 
-                            <div class="card">
+                            <div class="card" hidden>
                                 <div class="card-header bg-light">
                                     <div class="d-flex align-items-center">
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
@@ -1787,7 +1665,7 @@ $userEmail = $_SESSION['userEmail'];
                             </div>
 
 
-                            <div class="card">
+                            <div class="card" hidden>
                                 <div class="card-header bg-light">
                                     <div class="d-flex align-items-center">
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
@@ -1837,35 +1715,7 @@ $userEmail = $_SESSION['userEmail'];
                             </div>
 
 
-                            <div class="card">
-                                <div class="card-header bg-light">
-                                    <div class="d-flex align-items-center">
-                                        <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-                                            <i class="ti ti-building fs-16"></i>
-                                        </span>
-                                        <h4 class="text-dark">Previous School Details (all mandatory)</h4>
-                                    </div>
-                                </div>
-                                <div class="card-body pb-0">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">School Name</label>
-                                                <input type="text" class="form-control" name="previousSchoolName" value="<?php echo $previousSchoolName; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4">
-                                                <label class="form-label">Address</label>
-                                                <input type="text" class="form-control" name="previousSchoolAddress" value="<?php echo $previousSchoolAddress; ?>">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="card">
+                            <div class="card" hidden>
                                 <div class="card-header bg-light">
                                     <div class="d-flex align-items-center">
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
@@ -1888,12 +1738,6 @@ $userEmail = $_SESSION['userEmail'];
                                                 <input type="text" class="form-control" name="branchOfBank" value="<?php echo $branchOfBank; ?>">
                                             </div>
                                         </div>
-                                        <div class="col-md-5">
-                                            <div class="mb-4">
-                                                <label class="form-label">IFSC Number</label>
-                                                <input type="text" class="form-control" name="ifscNumber" value="<?php echo $ifscNumber; ?>">
-                                            </div>
-                                        </div>
                                         <div class="col-md-12">
                                             <div class="mb-4">
                                                 <label class="form-label">Other Information</label>
@@ -1902,11 +1746,6 @@ $userEmail = $_SESSION['userEmail'];
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="text-end">
-                                <button type="button" class="btn btn-light me-3">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Save Changes</button>
                             </div>
                         </form>
                     </div>

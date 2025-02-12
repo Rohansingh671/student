@@ -24,11 +24,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $status = !empty($_POST['status']) ? htmlspecialchars(trim($_POST['status'])) : 'Inactive';
 
         // Validate subject ID and subject Name (only letters, numbers, spaces allowed)
-        if (!preg_match("/^[a-zA-Z0-9\s]+$/", $subject_id) || !preg_match("/^[a-zA-Z0-9\s]+$/", $name)) {
-            echo "Subject ID and Subject Name can only contain letters, numbers, and spaces.";
+        if (
+            !preg_match("/^[\p{Devanagari}a-zA-Z0-9\s\(\)]+$/u", $subject_id) ||
+            !preg_match("/^[\p{Devanagari}a-zA-Z0-9\s\(\)\-]+$/u", $name)
+        ) {
+            echo "Subject ID and Name can only contain letters (including Nepali), numbers, spaces, and brackets ().";
             exit;
         }
-
 
         // Database connection
         $mysqli = db_connect();

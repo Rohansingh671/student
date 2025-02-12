@@ -97,18 +97,19 @@ $userEmail = $_SESSION['userEmail'];
 
                     <div class="d-flex align-items-center">
                         <div class="dropdown me-2">
-                            <a href="#" class="btn btn-outline-light fw-normal bg-white d-flex align-items-center p-2" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="ti ti-calendar-due me-1"></i>Academic Year : 2024 / 2025
+                            <a href="#" class="btn btn-outline-light fw-normal bg-white d-flex align-items-center p-2"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="ti ti-calendar-due me-1"></i>Academic Year : 2081 / 2082
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2023 / 2024
+                                    Academic Year : 2082 / 2083
                                 </a>
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2022 / 2023
+                                    Academic Year : 2083 / 2084
                                 </a>
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2021 / 2022
+                                    Academic Year : 2084 / 2085
                                 </a>
                             </div>
                         </div>
@@ -160,7 +161,7 @@ $userEmail = $_SESSION['userEmail'];
                                                     <p class="text-dark">Teachers</p>
                                                 </a>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" hidden>
                                                 <a href="add-staff.php" class="d-block bg-warning-transparent ronded p-2 text-center mb-3 class-hover">
                                                     <div class="avatar avatar-lg rounded-circle mb-2">
                                                         <span class="d-inline-flex align-items-center justify-content-center w-100 h-100 bg-warning rounded-circle"><i class="ti ti-users-group"></i></span>
@@ -168,7 +169,7 @@ $userEmail = $_SESSION['userEmail'];
                                                     <p class="text-dark">Staffs</p>
                                                 </a>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" hidden>
                                                 <a href="add-invoice.php" class="d-block bg-info-transparent ronded p-2 text-center mb-3 class-hover">
                                                     <div class="avatar avatar-lg mb-2">
                                                         <span class="d-inline-flex align-items-center justify-content-center w-100 h-100 bg-info rounded-circle"><i class="ti ti-license"></i></span>
@@ -325,7 +326,7 @@ $userEmail = $_SESSION['userEmail'];
                                             <p class="text-primary mb-0">Administrator</p>
                                         </div>
                                     </div>
-                                    
+
                                     <hr class="m-0">
                                     <a class="dropdown-item d-inline-flex align-items-center p-2" href="login.php"><i class="ti ti-login me-2"></i>Logout</a>
                                 </div>
@@ -433,9 +434,9 @@ $userEmail = $_SESSION['userEmail'];
                         </li>
                         <li>
                             <ul>
-                            <li>
+                                <li>
                                     <a href="classes.php"><i
-                                            class="ti ti-school-bell"></i><span>Classes</span></a>
+                                            class="ti ti-school-bell"></i><span>Courses</span></a>
                                     <ul hidden>
                                         <li><a href="classes.php">All Classes</a></li>
                                         <li><a href="schedule-classes.php">Schedule</a></li>
@@ -446,7 +447,7 @@ $userEmail = $_SESSION['userEmail'];
                                 <li hidden><a href="class-routine.php"><i class="ti ti-bell-school"></i><span>Class
                                             Routine</span></a></li>
                                 <li hidden><a href="class-section.php"><i class="ti ti-square-rotated-forbid-2"></i><span>Section</span></a></li>
-                                <li><a href="class-subject.php"><i class="ti ti-book"></i><span>Subject</span></a></li>
+                                <li><a href="class-subject.php"><i class="ti ti-book"></i><span>Sub-courses</span></a></li>
                                 <li hidden><a href="class-syllabus.php"><i class="ti ti-book-upload"></i><span>Syllabus</span></a></li>
                                 <li hidden><a href="class-time-table.php"><i class="ti ti-table"></i><span>Time
                                             Table</span></a></li>
@@ -969,7 +970,6 @@ $userEmail = $_SESSION['userEmail'];
                             </div>
                             <div class="d-flex my-xl-auto right-content align-items-center  flex-wrap">
                                 <a href="#" class="btn btn-light me-2 mb-2" data-bs-toggle="modal" data-bs-target="#login_detail" hidden><i class="ti ti-lock me-2"></i>Login Details</a>
-                                <a href="edit-student.php" class="btn btn-primary d-flex align-items-center mb-2"><i class="ti ti-edit-circle me-2"></i>Edit Student</a>
                             </div>
                         </div>
                     </div>
@@ -1175,146 +1175,61 @@ $userEmail = $_SESSION['userEmail'];
                                             <table class="table datatable">
                                                 <thead class="thead-light">
                                                     <tr>
+                                                        <th>Sn. No.</th>
+                                                        <th>Bill No.</th>
                                                         <th>Fees Group</th>
-                                                        <th>Fees Code</th>
-                                                        <th>Due Date</th>
-                                                        <th>Amount $ </th>
-                                                        <th>Status</th>
-                                                        <th>Ref ID</th>
-                                                        <th>Mode</th>
+                                                        <th>Total Fees (Rs)</th>
+                                                        <th>Pending Amount</th>
+                                                        <th>Discount (Rs)</th>
+                                                        <th>Total Paid</th>
+                                                        <th>Final Pending Amount</th>
                                                         <th>Date Paid</th>
-                                                        <th>Discount ($)</th>
-                                                        <th>Fine ($)</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <p class="text-primary fees-group">Class 1 General<span class="d-block">(Admission Fees)</span></p>
-                                                        </td>
-                                                        <td>admission-fees</td>
-                                                        <td>25 Mar 2024</td>
-                                                        <td>2000</td>
-                                                        <td><span class="badge badge-soft-success d-inline-flex align-items-center"><i class="ti ti-circle-filled fs-5 me-1"></i>Paid</span></td>
-                                                        <td>#435454</td>
-                                                        <td>Cash</td>
-                                                        <td>25 Jan 2024</td>
-                                                        <td>10%</td>
-                                                        <td>200</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <p class="text-primary">Class 1 General <span class="d-block"> (Mar month fees)</span></p>
-                                                        </td>
-                                                        <td>mar-month-fees</td>
-                                                        <td>10 Apr 2024</td>
-                                                        <td>2500</td>
-                                                        <td><span class="badge badge-soft-success d-inline-flex align-items-center"><i class="ti ti-circle-filled fs-5 me-1"></i>Paid</span></td>
-                                                        <td>#435453</td>
-                                                        <td>Cash</td>
-                                                        <td>03 Apr 2024</td>
-                                                        <td>10%</td>
-                                                        <td>0</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <p class="text-primary">Class 1 General <span class="d-block">(Apr month Fees)</span></p>
-                                                        </td>
-                                                        <td>apr-month-fees</td>
-                                                        <td>10 May 2024</td>
-                                                        <td>2500</td>
-                                                        <td><span class="badge badge-soft-success d-inline-flex align-items-center"><i class="ti ti-circle-filled fs-5 me-1"></i>Paid</span></td>
-                                                        <td>#435453</td>
-                                                        <td>Cash</td>
-                                                        <td>03 Apr 2024</td>
-                                                        <td>10%</td>
-                                                        <td>0</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <p class="text-primary">Class 1 General <span class="d-block">(May month Fees)</span></p>
-                                                        </td>
-                                                        <td>may-month-fees</td>
-                                                        <td>10 Jun 2024</td>
-                                                        <td>2500</td>
-                                                        <td><span class="badge badge-soft-success d-inline-flex align-items-center"><i class="ti ti-circle-filled fs-5 me-1"></i>Paid</span></td>
-                                                        <td>#435451</td>
-                                                        <td>Cash</td>
-                                                        <td>02 Jun 2024</td>
-                                                        <td>10%</td>
-                                                        <td>200</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <p class="text-primary">Class 1 General <span class="d-block">(Jun month Fees)</span></p>
-                                                        </td>
-                                                        <td>jun-month-fees</td>
-                                                        <td>10 Jul 2024</td>
-                                                        <td>2500</td>
-                                                        <td><span class="badge badge-soft-success d-inline-flex align-items-center"><i class="ti ti-circle-filled fs-5 me-1"></i>Paid</span></td>
-                                                        <td>#435450</td>
-                                                        <td>Cash</td>
-                                                        <td>05 Jul 2024</td>
-                                                        <td>10%</td>
-                                                        <td>200</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <p class="text-primary">Class 1 General <span class="d-block">
-                                                                    (Jul month Fees)</span></p>
-                                                        </td>
-                                                        <td>jul-month-fees</td>
-                                                        <td>10 Aug 2024</td>
-                                                        <td>2500</td>
-                                                        <td><span class="badge badge-soft-success d-inline-flex align-items-center"><i class="ti ti-circle-filled fs-5 me-1"></i>Paid</span></td>
-                                                        <td>#435449</td>
-                                                        <td>Cash</td>
-                                                        <td>01 Aug 2024</td>
-                                                        <td>10%</td>
-                                                        <td>200</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <p class="text-primary">Class 1 General <span class="d-block">
-                                                                    (Dec month Fees)</span></p>
-                                                        </td>
-                                                        <td>dec-month-fees</td>
-                                                        <td>10 Jan 2024</td>
-                                                        <td>2500</td>
-                                                        <td><span class="badge badge-soft-success d-inline-flex align-items-center"><i class="ti ti-circle-filled fs-5 me-1"></i>Paid</span></td>
-                                                        <td>#435443</td>
-                                                        <td>Cash</td>
-                                                        <td>05 Jan 2024</td>
-                                                        <td>10%</td>
-                                                        <td>0</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <p class="text-primary">Class 1 General <span class="d-block">
-                                                                    (Jan month Fees)</span></p>
-                                                        </td>
-                                                        <td>jan-month-fees</td>
-                                                        <td>10 Feb 2024</td>
-                                                        <td>2000</td>
-                                                        <td><span class="badge badge-soft-success d-inline-flex align-items-center"><i class="ti ti-circle-filled fs-5 me-1"></i>Paid</span></td>
-                                                        <td>#435443</td>
-                                                        <td>Cash</td>
-                                                        <td>01 Feb 2024</td>
-                                                        <td>10%</td>
-                                                        <td>200</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="bg-dark">-</td>
-                                                        <td class="bg-dark"></td>
-                                                        <td class="bg-dark"></td>
-                                                        <td class="bg-dark text-white">2000</td>
-                                                        <td class="bg-dark"></td>
-                                                        <td class="bg-dark"></td>
-                                                        <td class="bg-dark"></td>
-                                                        <td class="bg-dark"></td>
-                                                        <td class="bg-dark text-white">200</td>
-                                                        <td class="bg-dark text-white">200</td>
-                                                    </tr>
+                                                    <?php
+                                                    require_once 'php/databaseConnection.php';
+
+                                                    $mysqli = db_connect();
+
+                                                    if ($mysqli) {
+
+                                                        $studentID = $_GET['id']; // Ensure you validate and sanitize this input to prevent SQL injection
+
+                                                        $stmt = $mysqli->prepare("SELECT feescollection.ID, addstudent.ID, addstudent.feesGroup, feescollection.courseFee, feescollection.AmountPaid, feescollection.pendingAmount, feescollection.finalPendingAmount, feescollection.discount, feescollection.PaidDateTime FROM `feescollection` INNER JOIN addstudent ON addstudent.ID = feescollection.StudentID WHERE addstudent.ID = ? ORDER BY feescollection.ID DESC;");
+
+                                                        $stmt->bind_param("i", $studentID); // Bind the student ID to the quer
+                                                        $stmt->execute();
+                                                        $stmt->store_result();
+                                                        $stmt->bind_result($ID, $studentID, $feesGroup, $courseFee, $AmountPaid, $pendingAmount, $finalPendingAmount, $discount, $datePaid);
+                                                        $sn = 1;
+                                                        while ($stmt->fetch()) {
+                                                            echo "<tr>";
+                                                            echo "<td>" . $sn . "</td>";
+                                                            echo "<td>" . $ID . "</td>";
+                                                            echo "<td>" . $feesGroup . "</td>";
+                                                            echo "<td>" . $courseFee . "</td>";
+                                                            echo "<td>" . $pendingAmount . "</td>";
+                                                            echo "<td>" . $discount . "</td>";
+                                                            echo "<td>" . $AmountPaid . "</td>";
+                                                            echo "<td>" . $finalPendingAmount . "</td>";
+                                                            echo "<td>" . $datePaid . "</td>";
+                                                            echo "<td>";
+                                                            echo "<a href='php/billPrint.php?billID=" . $ID . "&studentID=" . $studentID . "' class='btn btn-success btn-sm me-2'><i class='ti ti-printer' target='_blank'></i></a>";
+                                                            echo "</td>";
+                                                            echo "</tr>";
+                                                            $sn++;
+                                                        }
+                                                        $stmt->close();
+                                                        $mysqli->close();
+                                                    } else {
+                                                        echo "Database Connection Error";
+                                                    }
+                                                    ?>
+
+
+
                                                 </tbody>
                                             </table>
                                         </div>

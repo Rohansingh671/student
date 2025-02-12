@@ -77,11 +77,11 @@
 <span class="input-icon-addon">
 <i class="ti ti-mail"></i>
 </span>
-<input type="text" value="" class="form-control" name="smsEmail" data-parsley-required="true" data-parsley-error-message="Email is required.">
+<input type="text" value="" class="form-control" name="smsEmail" data-parsley-required="true" data-parsley-error-message="Email is required." placeholder="Email Address">
 </div>
 <label class="form-label">Password</label>
 <div class="pass-group">
-<input type="password" class="pass-input form-control" name="smsPassword" data-parsley-required="true" data-parsley-error-message="Password is required.">
+<input type="password" class="pass-input form-control" name="smsPassword" data-parsley-required="true" data-parsley-error-message="Password is required." placeholder="Password">
 <span class="ti toggle-password ti-eye-off"></span>
 </div>
 </div>
@@ -101,7 +101,7 @@ Password?</a>
 <button type="submit" class="btn btn-primary w-100">Sign In</button>
 </div>
 <div class="text-center">
-<h6 class="fw-normal text-dark mb-0">Don’t have an account? <a href="register-2.php" class="hover-a "> Create Account</a>
+<h6 class="fw-normal text-dark mb-0">Don’t have an account? <a href="#" class="hover-a "> Create Account</a>
 </h6>
 </div>
 </div>

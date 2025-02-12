@@ -22,8 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $classStatus = !empty($_POST['classStatus']) ? htmlspecialchars(trim($_POST['classStatus'])) : 'Inactive';
 
         // Validate Class ID and Class Name (only letters, numbers, spaces allowed)
-        if (!preg_match("/^[a-zA-Z0-9\s]+$/", $classID) || !preg_match("/^[a-zA-Z0-9\s]+$/", $className)) {
-            echo "Class ID and Class Name can only contain letters, numbers, and spaces.";
+        if (
+            !preg_match("/^[\p{Devanagari}a-zA-Z0-9\s]+$/u", $classID) ||
+            !preg_match("/^[\p{Devanagari}a-zA-Z0-9\s]+$/u", $className)
+        ) {
+            echo "Class ID and Class Name can only contain letters (including Nepali), numbers, and spaces.";
             exit;
         }
 

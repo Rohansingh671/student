@@ -18,7 +18,9 @@ if (!$stmt) {
 // Bind the parameter and execute the statement
 $stmt->bind_param("i", $sid);
 if ($stmt->execute()) {
-    echo '<meta http-equiv="refresh" content="0; url=/student/class-subject.php" />';
+    // Redirect to the class-subject page
+    header("Location: /student/class-subject.php");
+    exit;
 } else {
     echo "Failed to Delete Record";
 }

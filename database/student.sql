@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 26, 2024 at 07:55 AM
+-- Generation Time: Dec 18, 2024 at 08:53 AM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -36,15 +36,16 @@ CREATE TABLE IF NOT EXISTS `addfeesgroup` (
   `remark` varchar(50) NOT NULL,
   `feesGroupStatus` varchar(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `addfeesgroup`
 --
 
 INSERT INTO `addfeesgroup` (`ID`, `feesGroupID`, `feesGroup`, `feesGroupAmount`, `remark`, `feesGroupStatus`) VALUES
-(15, 'FGID4', 'computer fee', 'Rs  600', 'the money you pay to be taught', 'Inactive'),
-(13, 'FGID2', 'Tuition Fee', 'Rs  4000', 'The money you pay to be taught', 'Inactive');
+(25, 'FGID3', 'मुख्य सचिव(निजामती सेवा)', 'Rs  5000', 'The money you pay matters!!!!', 'Active'),
+(24, 'FGID2', 'सचिव(निजामती सेवा)', 'Rs  4600', 'The money you pay matters!!!', 'Active'),
+(23, 'FGID1', 'सहसचिव(निजामती सेवा)', 'Rs  4000', 'The money you pay to be taught!!!', 'Active');
 
 -- --------------------------------------------------------
 
@@ -63,70 +64,57 @@ CREATE TABLE IF NOT EXISTS `addstudent` (
   `studentStatus` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `fnameOfStudent` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `lnameOfStudent` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `class` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `class` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   `section` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `gender` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `dateOfBirth` date NOT NULL,
-  `bloodGroup` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `house` varchar(60) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `religion` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `feesGroup` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `caste` varchar(60) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `primaryContact` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bloodGroup` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `house` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `religion` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `feesGroup` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `caste` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `primaryContact` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `emailOfstudent` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `motherTongue` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `languageKnown` varchar(225) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `imageOfFather` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `fatherName` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `motherTongue` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `languageKnown` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `imageOfFather` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fatherName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `emailOfFather` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `fatherContact` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `fatherProfession` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `imageOfMother` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `motherName` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fatherContact` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fatherProfession` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `imageOfMother` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `motherName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `emailOfMother` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `motherContact` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `motherProfession` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `guardianName` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `guardianRelation` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `guardianContact` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `motherContact` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `motherProfession` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `guardianName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `guardianRelation` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `guardianContact` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `guardianEmail` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `guardianOccupation` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `guardianAddress` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `imageOfGuardian` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `guardianOccupation` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `guardianAddress` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `imageOfGuardian` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `currentAddressOfStudent` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `permanentAddressOfStudent` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `districtOfStudent` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `provinceOfStudent` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `transportRoute` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `vehicleNumber` varchar(25) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `pickUpPoint` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `hostel` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `hostelRoomNumber` varchar(25) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `documentOfBirthCertificate` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `documentOfTransferCertificate` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `allergiesOfStudent` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `medicationOfStudent` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `transportRoute` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `vehicleNumber` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pickUpPoint` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `hostel` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `hostelRoomNumber` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `documentOfBirthCertificate` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `documentOfTransferCertificate` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `allergiesOfStudent` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `medicationOfStudent` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `previousSchoolName` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `previousSchoolAddress` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `bankName` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `branchOfBank` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `ifscNumber` varchar(25) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `otherInfo` text COLLATE utf8mb4_general_ci,
+  `bankName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `branchOfBank` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `ifscNumber` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `otherInfo` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `addstudent`
---
-
-INSERT INTO `addstudent` (`ID`, `imageOfStudent`, `academicYear`, `admissionNumber`, `admissionDate`, `rollNumber`, `studentStatus`, `fnameOfStudent`, `lnameOfStudent`, `class`, `section`, `gender`, `dateOfBirth`, `bloodGroup`, `house`, `religion`, `feesGroup`, `caste`, `primaryContact`, `emailOfstudent`, `motherTongue`, `languageKnown`, `imageOfFather`, `fatherName`, `emailOfFather`, `fatherContact`, `fatherProfession`, `imageOfMother`, `motherName`, `emailOfMother`, `motherContact`, `motherProfession`, `guardianName`, `guardianRelation`, `guardianContact`, `guardianEmail`, `guardianOccupation`, `guardianAddress`, `imageOfGuardian`, `currentAddressOfStudent`, `permanentAddressOfStudent`, `districtOfStudent`, `provinceOfStudent`, `transportRoute`, `vehicleNumber`, `pickUpPoint`, `hostel`, `hostelRoomNumber`, `documentOfBirthCertificate`, `documentOfTransferCertificate`, `allergiesOfStudent`, `medicationOfStudent`, `previousSchoolName`, `previousSchoolAddress`, `bankName`, `branchOfBank`, `ifscNumber`, `otherInfo`) VALUES
-(29, 'studentDocuments/profilePictures/673329552e391_avatar-01.jpg', 'June 2023/24', 'AD001', '2024-11-07', 'RL002', 'Active', 'Haitomns', 'Rohan', 'Select', 'Adhikrit', 'Male', '2024-11-21', 'A+', 'Blue', 'Hindu', 'Tuition Fee', 'Kurmi', '9820998994', 'sankar8242@gmail.com', 'Hindi', 'English, Spanish', 'studentDocuments/profilePictures/673329552e76a_avatar-14.jpg', 'Harishankar kurmi', 'harishankarpatel144@gmail.com', '9852635652', 'Worker', 'studentDocuments/profilePictures/673329552ee26_avatar-19.jpg', 'Laxmi Devi', 'laxmidevi22@gmail.com', '9822550000', 'HouseWife', 'Gaurishankar', 'Uncle', '9812110620', 'gauri122@gmail.com', 'Operator', 'Pipara-14', 'studentDocuments/profilePictures/673329552f362_avatar-23.jpg', 'Birgunj', 'Parwanipur', 'Kathmandu', 'Gandaki', 'NewYork', 'AM 54548', 'Cincinatti', 'Phoenix Residence', '20', 'studentDocuments/profilePictures/673329552fa9d_student-01.jpg', 'studentDocuments/profilePictures/67332955301ae_parent-13.jpg', 'Allergy, Skin Allergy', 'Medecine Name', 'Shree Nrisingh Madhyamik Vidhyalay', 'Piparamathh-14, Birgunj', 'Nepal Central Bank', 'murli', '12340008907654', 'vjhchdrdryey'),
-(35, 'studentDocuments/profilePictures/6734543c39931_avatar-14.jpg', 'June 2024/25', 'AD005', '2024-11-06', 'RL002', 'Active', 'Haitomns', 'Rohan', 'Computer', 'Sikshak sewa', 'Select', '2024-11-08', 'Select', 'Select', 'Select', 'FGID1', NULL, NULL, '', 'Select', 'English, Spanish', NULL, NULL, '', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, 'Birgunj', 'Parwanipur-21, Birgunj,parsa', 'Parsa', 'Madhesh Pradesh', 'Select', 'Select', 'Select', 'Select', 'Select', NULL, NULL, 'Allergy, Skin Allergy', 'Medecine Name', 'Shree Nrisingh Madhyamik Vidhyalay', 'birgunj', NULL, NULL, '12340008907654', NULL),
-(38, 'studentDocuments/profilePictures/673485c4be7be_avatar-19.jpg', 'June 2024/25', 'AD007', '2024-11-07', 'RL002', 'Active', 'Haitomns', 'rohan', 'Public Service', 'Subba', 'Male', '2024-11-15', 'A +ve', 'Blue', NULL, 'FGID2', NULL, NULL, '', NULL, 'English, Spanish', NULL, NULL, '', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, 'Bhairahwa-14, Biratnagar', 'Parwanipur', 'Kathmandu', 'Madhesh Pradesh', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Allergy, Skin Allergy', 'Medecine Name', 'Shree Nrisingh Madhyamik Vidhyalay', 'Piparamathh-14, Birgunj', NULL, NULL, '12340008907654', NULL),
-(39, 'studentDocuments/profilePictures/6734863574aa7_avatar-23.jpg', 'June 2024/25', 'AD008', '2024-11-16', 'RL003', 'Inactive', 'Siddhanth', 'Kurmi', 'Computer Operator', 'computer operator', 'Male', '2024-11-29', 'Select', 'Blue', 'Select', 'Tuition Fee', '', NULL, '', 'Select', 'English, Spanish', NULL, NULL, '', NULL, '', NULL, NULL, '', NULL, '', NULL, '', NULL, '', '', '', NULL, 'Bhairahwa-14, Biratnagar', 'Parwanipur-21, Birgunj,parsa', 'Kathmandu', 'Gandaki', 'Select Transportation Route', 'Select', 'Select', 'Select', 'Select', NULL, NULL, 'Allergy, Skin Allergy', 'Medecine Name', 'Shree Nrisingh Madhyamik Vidhyalay', 'Piparamathh-14, Birgunj', NULL, NULL, '12340008907654', ''),
-(40, 'studentDocuments/profilePictures/67371fe71cad7_avatar-27.jpg', 'June 2024/25', 'AD009', '2024-11-19', 'RL002', 'Active', 'Haitomns', 'rohan', 'Public Service', 'Adhikrit', 'Male', '2024-11-15', 'Select', 'Select', 'Select', 'Select', '', NULL, '', 'Select', 'English, Spanish', NULL, NULL, '', NULL, '', NULL, NULL, '', NULL, '', NULL, '', NULL, '', '', '', NULL, 'Bhairahwa-14, Biratnagar', 'Parwanipur', 'Kathmandu', 'Bagmati Province', 'Select Transportation Route', 'Select', 'Select', 'Select', 'Select', NULL, NULL, 'Allergy, Skin Allergy', 'Medecine Name', 'Shree Nrisingh Madhyamik Vidhyalay', 'Piparamathh-14, Birgunj', NULL, NULL, '12340008907654', ''),
-(41, 'studentDocuments/profilePictures/67372b3c7ebe1_avatar-14.jpg', 'June 2024/25', 'AD0010', '2024-11-05', 'RL003', 'Active', 'Haitomns', 'Sharma', 'Public Service', 'subba', 'Female', '2024-11-14', NULL, NULL, NULL, 'computer fee', NULL, NULL, '', NULL, 'English, Spanish', NULL, NULL, '', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, 'Bhairahwa-14, Biratnagar', 'Parwanipur-21, Birgunj,parsa', 'Kathmandu', 'Madhesh Pradesh', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Allergy, Skin Allergy', 'Medecine Name', 'Shree Nrisingh Madhyamik Vidhyalay', 'Piparamathh-14, Birgunj', NULL, NULL, '12340008907654', NULL),
-(42, 'studentDocuments/profilePictures/673db17eb807e_avatar-25.jpg', 'June 2023/24', 'AD0011', '2024-11-12', 'RL003', 'Active', 'Haitomns', 'Sharma', 'Public Service', 'computer operator', 'Male', '2024-11-14', NULL, NULL, NULL, 'Array', NULL, NULL, '', NULL, 'English, Spanish', NULL, NULL, '', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, 'Bhairahwa-14, Biratnagar', 'Parwanipur-21, Birgunj,parsa', 'Kathmandu', 'Madhesh Pradesh', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Allergy, Skin Allergy', 'Medecine Name', 'Shree Nrisingh Madhyamik Vidhyalay', 'Piparamathh-14, Birgunj', NULL, NULL, '12340008907654', NULL);
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -143,16 +131,25 @@ CREATE TABLE IF NOT EXISTS `addsubject` (
   `type` varchar(30) NOT NULL,
   `status` varchar(30) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `addsubject`
 --
 
 INSERT INTO `addsubject` (`ID`, `subject_id`, `name`, `code`, `type`, `status`) VALUES
-(15, 'SUBID4', 'computer operator', 102, 'Practical', 'Active'),
-(13, 'SUBID2', 'Kharidar', 102, 'Theory', 'Inactive'),
-(12, 'SUBID1', 'Adhikrit', 102, 'Theory', 'Active');
+(21, 'SUBID3', 'सहसचिव(निजामती सेवा)', 103, 'Theory', 'Active'),
+(20, 'SUBID2', 'सचिव(निजामती सेवा)', 102, 'Theory', 'Active'),
+(19, 'SUBID1', 'मुख्य सचिव(निजामती सेवा)', 102, 'Theory', 'Active'),
+(22, 'SUBID4', 'उपसचिव(निजामती सेवा)', 102, 'Theory', 'Active'),
+(23, 'SUBID5', 'शाखा अधिकृत(निजामती सेवा)', 103, 'Theory', 'Active'),
+(24, 'SUBID6', 'नायब सुब्बा(निजामती सेवा)', 104, 'Theory', 'Active'),
+(25, 'SUBID7', 'खरिदार(निजामती सेवा)', 104, 'Theory', 'Active'),
+(26, 'SUBID8', 'प्राथमिक तह(शिक्षक सेवा आयोग)', 101, 'Theory', 'Active'),
+(27, 'SUBID9', 'निम्न माध्यमिक तह(शिक्षक सेवा आयोग)', 103, 'Theory', 'Active'),
+(28, 'SUBID10', 'माध्यमिक तह(शिक्षक सेवा आयोग)', 102, 'Theory', 'Active'),
+(32, 'SUBID11', 'English', 102, 'Theory', 'Active'),
+(33, 'SUBID12', 'English', 102, 'Theory', 'Active');
 
 -- --------------------------------------------------------
 
@@ -217,15 +214,14 @@ CREATE TABLE IF NOT EXISTS `addteacher` (
   `previous_school_contact_number` varchar(12) NOT NULL,
   `other_info` varchar(100) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `addteacher`
 --
 
 INSERT INTO `addteacher` (`ID`, `teacher_id`, `teacher_image`, `first_name`, `last_name`, `gender`, `email_address`, `primary_contact_number`, `qualification`, `work_experience`, `address`, `permanent_address`, `date_of_birth`, `pan_number`, `class`, `subject`, `date_of_joining`, `language_known`, `status_of_teacher`, `marital_status`, `blood_group`, `father_name`, `mother_name`, `epf_no`, `basic_salary`, `contract_type`, `date_of_leaving`, `work_shift`, `work_location`, `medical_leaves`, `casual_leaves`, `maternity_leaves`, `sick_leaves`, `account_name`, `account_number`, `ifsc_code`, `bank_name`, `branch_name`, `route`, `vehicle_number`, `pickup_point`, `hostel`, `room_number`, `facebook`, `instagram`, `linkedin`, `twitter_url`, `youtube`, `resume`, `joining_letter`, `previous_school_name`, `previous_school_address`, `previous_school_contact_number`, `other_info`) VALUES
-(10, 'TID02', 'avatar-14.jpg', 'Rambabu', 'Sharma', 'Male', 'haitomns@gmail.com', '9825252525', 'Computer Experience', 'Typing Master', 'Pipara-14', 'Bariyarpur', '2024-11-05', '0021365489', 'Public Service', 'computer operator', '2024-11-12', 'English, Spanish', 'Active', 'Single', 'B +ve', 'Harishanakr', 'Laxmi Devi', '895264', 520000.00, 'Permanent', '2024-11-22', 'Morning', '1st Floor', 20, 20, 20, 20, 'Harishanakar Prasad kurmi', '0012236548956', '12036648952', 'Sidhharth', 'Sidhhatrth', 'Newyork', 'AM 54548', 'Illinois', 'Phoenix Residence', '20', '', '', '', '', '', 'avogadro_law,_combind_ras_eq_3052be3fa5f8f78e (1).pdf', 'boyle\'s_law_and_charle\'s_law_(1)_8633d4464ed0af57.pdf', 'Shree Nrisingh', 'pipara', '9865656565', 'jcshguwivowieu'),
-(8, 'TID01', 'avatar-01.jpg', 'Rohan', 'Singh', 'Male', 'haitomns@gmail.com', '9825252525', 'Computer Experience', 'Typing Master', 'Pipara-14', 'Bariyarpur', '2024-11-06', '0021365489', 'Computer Operator', 'computer operator', '2024-11-06', 'English, Spanish', 'Active', 'Single', 'O +ve', 'Harishankar kurmi', 'Laxmi Devi', '895264', 520000.00, 'Permanent', '2024-11-07', 'Afternoon', '1st Floor', 20, 20, 20, 20, 'Harishanakar Prasad kurmi', '0012236548956', '12036648952', 'Sidhharth', 'Sidhhatrth', 'Newyork', 'AM 54548', 'Cincinatti', 'Phoenix Residence', '22', 'www.facebook.com', 'www.instagram.com', 'www.linkedIn.com', 'www.twitter.com', 'www.youtube.com', 'boyle\'s_law_and_charle\'s_law_(1)_8633d4464ed0af57.pdf', 'avogadro_law,_combind_ras_eq_3052be3fa5f8f78e (1).pdf', 'Shree Nrisingh', 'pipara', '9865656565', 'kjgtdresuersawea');
+(11, 'TID01', 'avatar-01.jpg', 'Siddhanth', 'Sharma', 'Male', 'haitomns@gmail.com', '9825252525', 'Computer Experience', 'Typing Master', 'Pipara-14', 'Bariyarpur', '2024-12-17', '0021365489', 'Prahari Sewa', 'computer operator', '2024-12-18', 'English, Spanish', 'Active', 'Single', 'O +ve', 'Harishankar kurmi', 'Laxmi Devi', '895264', 520000.00, 'Permanent', '2024-12-19', 'Morning', 'Select', 20, 20, 20, 20, 'Harishanakar Prasad kurmi', '0012236548956', '12036648952', 'Sidhharth', 'Sidhhatrth', 'Denver', 'AM 54548', 'Cincinatti', 'Tranquil Haven', '20', 'www.facebook.com', 'www.instagram.com', 'www.linkedIn.com', 'www.twitter.com', 'www.youtube.com', 'boyle\'s_law_and_charle\'s_law_(1)_8633d4464ed0af57.pdf', 'daiton\'s_law,_grahams_law_cb2a5aca1d5212e3 (1).pdf', 'Shree Nrisingh', 'pipara', '9865656565', 'hello Teachers');
 
 -- --------------------------------------------------------
 
@@ -240,16 +236,21 @@ CREATE TABLE IF NOT EXISTS `classdata` (
   `className` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `classStatus` varchar(10) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `classdata`
 --
 
 INSERT INTO `classdata` (`ID`, `classID`, `className`, `classStatus`) VALUES
-(26, 'CID4', 'Prahari Sewa', 'Active'),
-(24, 'CID2', 'Computer Operator', 'Inactive'),
-(23, 'CID1', 'Public Service', 'Active');
+(31, 'CID3', 'बैंक तथा वित्तिय सेवा', 'Active'),
+(29, 'CID1', 'निजामती सेवा', 'Active'),
+(30, 'CID2', 'शिक्षक सेवा आयोग', 'Inactive'),
+(32, 'CID4', 'संस्थान सेवा', 'Active'),
+(33, 'CID5', 'अन्य सेवाहरु', 'Active'),
+(34, 'CID6', 'प्रहरी सेवा', 'Active'),
+(35, 'CID7', 'Computer Operator', 'Active'),
+(36, 'CID8', 'Public Service', 'Active');
 
 -- --------------------------------------------------------
 
@@ -260,12 +261,15 @@ INSERT INTO `classdata` (`ID`, `classID`, `className`, `classStatus`) VALUES
 DROP TABLE IF EXISTS `feescollection`;
 CREATE TABLE IF NOT EXISTS `feescollection` (
   `ID` int NOT NULL AUTO_INCREMENT,
+  `monthOf` varchar(20) NOT NULL,
   `StudentID` int NOT NULL,
   `AmountPaid` varchar(512) NOT NULL,
+  `discount` varchar(40) NOT NULL,
+  `remarks` varchar(300) NOT NULL,
   `PaidDateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `StudentIDRef` (`StudentID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -282,7 +286,7 @@ CREATE TABLE IF NOT EXISTS `smslogindata` (
   `userType` int NOT NULL,
   `userLastLogin` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`usersLoginID`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `smslogindata`
@@ -297,7 +301,9 @@ INSERT INTO `smslogindata` (`usersLoginID`, `userEmail`, `userUsername`, `userPa
 (12, 'sankar12@gmail.com', 'Haitomns', '$2y$10$9raxru8cS/XV9a/pK2Rh9unu1SaRdPw6ofnwiQC7dTYSCBTcLq6ti', 3, '2024-10-27 19:34:45'),
 (13, 'sankar123@gmail.com', 'Haitomnsroha', '$2y$10$erKgCBO1AmX2QMTV8iP.7.M4fXxU8/gKUxzIhaI9GEKqAdGTdihi2', 3, '2024-10-27 22:48:00'),
 (14, 'ashish@gmail.com', 'ashishgupta', '$2y$10$mUa9dksz3aG.Cqiv6NGUAu/dq3tNl/Mnp8ihg22597DsdtOI5bWhi', 3, '2024-10-27 23:02:52'),
-(15, 'shyam123@gmail.com', 'Shyambabu', '$2y$10$jjr/VYmQ8N7CLjV6eeox7uEf226BJLWCosHZ7ybHEKZri6FaoNr2e', 3, '2024-10-28 16:41:36');
+(15, 'shyam123@gmail.com', 'Shyambabu', '$2y$10$jjr/VYmQ8N7CLjV6eeox7uEf226BJLWCosHZ7ybHEKZri6FaoNr2e', 3, '2024-10-28 16:41:36'),
+(16, 'shyambabu234@gmail.com', 'mukesh', '$2y$10$1bVL3IQmfBKuEqerjGxQx.2RKYLqs8/CZLb1a1DKNf51.3doL87Dy', 3, '2024-12-08 11:15:47'),
+(17, 'ariaeducation@gmail.com', 'ariaeducation', '$2y$10$RG5kcM22A2Hu8SOZKO5YEuE8e08f7ZjyHdjbo/X0LW0xIEzlUeJqO', 3, '2024-12-09 09:20:13');
 
 --
 -- Constraints for dumped tables
@@ -310,3 +316,6 @@ ALTER TABLE `feescollection`
   ADD CONSTRAINT `StudentIDRef` FOREIGN KEY (`StudentID`) REFERENCES `addstudent` (`ID`) ON DELETE CASCADE;
 COMMIT;
 
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

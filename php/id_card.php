@@ -71,7 +71,7 @@ if (isset($_GET['id'])) {
 
     // Set the font path (adjust this if necessary)
     $font = __DIR__ . '/../idCardAssets/arial.ttf'; // Ensure you have a TTF font file in the same directory or provide a valid path
-    $font_cursive = __DIR__ . '/../idCardAssets/cursive.ttf'; // Ensure you have a TTF font file in the same directory or provide a valid path
+    $font_cursive = __DIR__ . '/../idCardAssets/cursive.ttf'; // Ensure you have a TTF font file in the same directory or provide a valid pathz
 
     // Increase font size for better coverage
     $font_size = 50;  // Increased font size

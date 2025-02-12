@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (password_verify($password, $hashed_password)) {
                     echo "Login successful!";
                     session_start();
+                    $_SESSION['username'] = $username;
                     $_SESSION['userEmail'] = $email; // Set user email in session
                     // Redirect to dashboard or home page
                     header("Location: ../index.php"); // Change 'dashboard.php' to your target page

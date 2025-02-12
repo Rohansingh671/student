@@ -93,18 +93,19 @@ $userEmail = $_SESSION['userEmail'];
 
                     <div class="d-flex align-items-center">
                         <div class="dropdown me-2">
-                            <a href="#" class="btn btn-outline-light fw-normal bg-white d-flex align-items-center p-2" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="ti ti-calendar-due me-1"></i>Academic Year : 2024 / 2025
+                            <a href="#" class="btn btn-outline-light fw-normal bg-white d-flex align-items-center p-2"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="ti ti-calendar-due me-1"></i>Academic Year : 2081 / 2082
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2023 / 2024
+                                    Academic Year : 2082 / 2083
                                 </a>
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2022 / 2023
+                                    Academic Year : 2083 / 2084
                                 </a>
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2021 / 2022
+                                    Academic Year : 2084 / 2085
                                 </a>
                             </div>
                         </div>
@@ -156,7 +157,7 @@ $userEmail = $_SESSION['userEmail'];
                                                     <p class="text-dark">Teachers</p>
                                                 </a>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" hidden>
                                                 <a href="add-staff.php" class="d-block bg-warning-transparent ronded p-2 text-center mb-3 class-hover">
                                                     <div class="avatar avatar-lg rounded-circle mb-2">
                                                         <span class="d-inline-flex align-items-center justify-content-center w-100 h-100 bg-warning rounded-circle"><i class="ti ti-users-group"></i></span>
@@ -164,7 +165,7 @@ $userEmail = $_SESSION['userEmail'];
                                                     <p class="text-dark">Staffs</p>
                                                 </a>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" hidden>
                                                 <a href="add-invoice.php" class="d-block bg-info-transparent ronded p-2 text-center mb-3 class-hover">
                                                     <div class="avatar avatar-lg mb-2">
                                                         <span class="d-inline-flex align-items-center justify-content-center w-100 h-100 bg-info rounded-circle"><i class="ti ti-license"></i></span>
@@ -430,7 +431,7 @@ $userEmail = $_SESSION['userEmail'];
                             <ul>
                                 <li>
                                     <a href="classes.php"><i
-                                            class="ti ti-school-bell"></i><span>Classes</span></a>
+                                            class="ti ti-school-bell"></i><span>Courses</span></a>
                                     <ul hidden>
                                         <li><a href="classes.php">All Classes</a></li>
                                         <li><a href="schedule-classes.php">Schedule</a></li>
@@ -441,7 +442,7 @@ $userEmail = $_SESSION['userEmail'];
                                 <li hidden><a href="class-routine.php"><i class="ti ti-bell-school"></i><span>Class
                                             Routine</span></a></li>
                                 <li hidden><a href="class-section.php"><i class="ti ti-square-rotated-forbid-2"></i><span>Section</span></a></li>
-                                <li class="active"><a href="class-subject.php"><i class="ti ti-book"></i><span>Subject</span></a></li>
+                                <li class="active"><a href="class-subject.php"><i class="ti ti-book"></i><span>Sub-courses</span></a></li>
                                 <li hidden><a href="class-syllabus.php"><i class="ti ti-book-upload"></i><span>Syllabus</span></a></li>
                                 <li hidden><a href="class-time-table.php"><i class="ti ti-table"></i><span>Time
                                             Table</span></a></li>
@@ -947,7 +948,7 @@ $userEmail = $_SESSION['userEmail'];
 
                 <div class="d-md-flex d-block align-items-center justify-content-between mb-3">
                     <div class="my-auto mb-2">
-                        <h3 class="page-title mb-1">Subjects</h3>
+                        <h3 class="page-title mb-1">Sub-courses</h3>
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item">
@@ -956,7 +957,7 @@ $userEmail = $_SESSION['userEmail'];
                                 <li class="breadcrumb-item">
                                     <a href="javascript:void(0);">Academic </a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">Subjects</li>
+                                <li class="breadcrumb-item active" aria-current="page">Sub-courses</li>
                             </ol>
                         </nav>
                     </div>
@@ -986,7 +987,7 @@ $userEmail = $_SESSION['userEmail'];
                         </div>
                         <div class="mb-2">
                             <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_subject"><i class="ti ti-square-rounded-plus-filled me-2"></i>Add
-                                Subject</a>
+                                Sub-course</a>
                         </div>
                     </div>
                 </div>
@@ -994,7 +995,7 @@ $userEmail = $_SESSION['userEmail'];
 
                 <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between flex-wrap pb-0">
-                        <h4 class="mb-3">Class Subject</h4>
+                        <h4 class="mb-3">Sub-courses</h4>
                         <div class="d-flex align-items-center flex-wrap">
                             <div class="input-icon-start mb-3 me-2 position-relative">
                                 <span class="icon-addon">
@@ -1142,7 +1143,7 @@ $userEmail = $_SESSION['userEmail'];
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Add Subject</h4>
+                        <h4 class="modal-title">Add Sub-course</h4>
                         <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
                             <i class="ti ti-x"></i>
                         </button>
@@ -1167,138 +1168,138 @@ $userEmail = $_SESSION['userEmail'];
                                 ?>
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <label class="form-label">Subject ID</label>
+                                        <label class="form-label">Sub-course ID</label>
                                         <input type="text" class="form-control" name="subject_id" value="SUBID<?php echo $total_subject_id ?>" readonly>
                                     </div>
 
-                                <div class="mb-3">
-                                    <label class="form-label">Name</label>
-                                    <input type="text" class="form-control" name="name">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Code</label>
-                                    <select class="select" name="code">
-                                        <option>Select</option>
-                                        <option>101</option>
-                                        <option>102</option>
-                                        <option>103</option>
-                                        <option>104</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Type</label>
-                                    <select class="select" name="type">
-                                        <option>Select</option>
-                                        <option>Theory</option>
-                                        <option>Practical</option>
-                                    </select>
-                                </div>
-                                <div class="col-xxl col-xl-3 col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Status</label>
-                                        <select class="select" name="status">
-                                            <option value="">Select</option>
-                                            <option value="Active">Active</option>
-                                            <option value="Inactive">Inactive</option>
+                                        <label class="form-label">Name</label>
+                                        <input type="text" class="form-control" name="name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Code</label>
+                                        <select class="select" name="code">
+                                            <option>Select</option>
+                                            <option>101</option>
+                                            <option>102</option>
+                                            <option>103</option>
+                                            <option>104</option>
                                         </select>
                                     </div>
-                                </div>
-
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <a href="#" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</a>
-                    <button type="submit" class="btn btn-primary">Add Subject</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="modal fade" id="edit_subject">
-        <div class="modal-dialog modal-dialog-centere">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Edit Subject</h4>
-                    <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="ti ti-x"></i>
-                    </button>
-                </div>
-                <form action="php/updateSubject.php" method="POST">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label">Subject ID</label>
-                                    <input type="text" class="form-control" placeholder="Enter Name" value="<?php echo htmlspecialchars($subject_id); ?>" name="subject_id" id="subject_id" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Name</label>
-                                    <input type="text" class="form-control" placeholder="Enter Name" value="<?php echo htmlspecialchars($name); ?>" name="name" id="name" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Code</label>
-                                    <select class="select" name="code" id="code" required>
-                                        <option disabled>Select</option>
-                                        <option value="101" <?php if ($code == '101') echo 'selected'; ?>>101</option>
-                                        <option value="102" <?php if ($code == '102') echo 'selected'; ?>>102</option>
-                                        <option value="103" <?php if ($code == '103') echo 'selected'; ?>>103</option>
-                                        <option value="104" <?php if ($code == '104') echo 'selected'; ?>>104</option>
-                                    </select>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Type</label>
-                                    <select class="select" name="type" id="type" required>
-                                        <option disabled>Select</option>
-                                        <option value="Theory" <?php if ($type == 'Theory') echo 'selected'; ?>>Theory</option>
-                                        <option value="Practical" <?php if ($type == 'Practical') echo 'selected'; ?>>Practical</option>
-                                    </select>
-                                </div>
-
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="status-title">
-                                        <h5>Status</h5>
-                                        <p>Change the Status by toggle </p>
+                                    <div class="mb-3">
+                                        <label class="form-label">Type</label>
+                                        <select class="select" name="type">
+                                            <option>Select</option>
+                                            <option>Theory</option>
+                                            <option>Practical</option>
+                                        </select>
                                     </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="classStatus" name="classStatus" <?php echo ($status == 'Active') ? 'checked' : ''; ?>>
+                                    <div class="col-xxl col-xl-3 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Status</label>
+                                            <select class="select" name="status">
+                                                <option value="">Select</option>
+                                                <option value="Active">Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                            </select>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</a>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="modal fade" id="delete-modal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <form action="class-subject.php">
-                    <div class="modal-body text-center">
-                        <span class="delete-icon">
-                            <i class="ti ti-trash-x"></i>
-                        </span>
-                        <h4>Confirm Deletion</h4>
-                        <p>You want to delete all the marked items, this cant be undone once you delete.</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="javascript:void(0);" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</a>
-                            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                        <div class="modal-footer">
+                            <a href="#" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Add Sub-course</button>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+
+
+        <div class="modal fade" id="edit_subject">
+            <div class="modal-dialog modal-dialog-centere">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Subject</h4>
+                        <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="ti ti-x"></i>
+                        </button>
+                    </div>
+                    <form action="php/updateSubject.php" method="POST">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Subject ID</label>
+                                        <input type="text" class="form-control" placeholder="Enter Name" value="<?php echo htmlspecialchars($subject_id); ?>" name="subject_id" id="subject_id" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Name</label>
+                                        <input type="text" class="form-control" placeholder="Enter Name" value="<?php echo htmlspecialchars($name); ?>" name="name" id="name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Code</label>
+                                        <select class="select" name="code" id="code" required>
+                                            <option disabled>Select</option>
+                                            <option value="101" <?php if ($code == '101') echo 'selected'; ?>>101</option>
+                                            <option value="102" <?php if ($code == '102') echo 'selected'; ?>>102</option>
+                                            <option value="103" <?php if ($code == '103') echo 'selected'; ?>>103</option>
+                                            <option value="104" <?php if ($code == '104') echo 'selected'; ?>>104</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Type</label>
+                                        <select class="select" name="type" id="type" required>
+                                            <option disabled>Select</option>
+                                            <option value="Theory" <?php if ($type == 'Theory') echo 'selected'; ?>>Theory</option>
+                                            <option value="Practical" <?php if ($type == 'Practical') echo 'selected'; ?>>Practical</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="status-title">
+                                            <h5>Status</h5>
+                                            <p>Change the Status by toggle </p>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="classStatus" name="classStatus" <?php echo ($status == 'Active') ? 'checked' : ''; ?>>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="delete-modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form action="class-subject.php">
+                        <div class="modal-body text-center">
+                            <span class="delete-icon">
+                                <i class="ti ti-trash-x"></i>
+                            </span>
+                            <h4>Confirm Deletion</h4>
+                            <p>You want to delete all the marked items, this cant be undone once you delete.</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="javascript:void(0);" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</a>
+                                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
     </div>
 

@@ -9,13 +9,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         !empty($_POST['academic_year']) && !empty($_POST['admission_number']) && !empty($_POST['admission_date']) &&
         !empty($_POST['roll_number']) && !empty($_POST['status']) && !empty($_POST['first_name']) &&
         !empty($_POST['last_name']) && !empty($_POST['class']) && !empty($_POST['section']) &&
-        !empty($_POST['gender']) && !empty($_POST['dob']) &&
-        !empty($_POST['current_addressOfStudent']) && !empty($_POST['permanent_addressOfStudent']) &&
-        !empty($_POST['districtOfStudent']) && !empty($_POST['provinceOfStudent']) &&
-        !empty($_POST['previousSchoolName']) && !empty($_POST['previousSchoolAddress']) &&
-        !empty($_POST['ifscNumber']) && !empty($_POST['feesGroup'])
+        !empty($_POST['gender']) &&
+        !empty($_POST['feesGroup']) && !empty($_POST['primary_contact'])
     ) {
-        
+
         if (isset($_POST['feesGroup']) && is_array($_POST['feesGroup'])) {
             $feesGroups = $_POST['feesGroup'];
             $feeGroupAll = implode(", ", $feesGroups);
@@ -26,8 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Basic validations for name fields
         if (
             !preg_match("/^[a-zA-Z\s'-]+$/", $_POST['first_name']) ||
-            !preg_match("/^[a-zA-Z\s'-]+$/", $_POST['last_name']) ||
-            !preg_match("/^[a-zA-Z\s'-]+$/", $_POST['previousSchoolName'])
+            !preg_match("/^[a-zA-Z\s'-]+$/", $_POST['last_name'])
         ) {
             echo "Only letters, spaces, hyphens, and apostrophes are allowed in First name, Last name, and other name fields.";
             exit;
@@ -40,7 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mother_name = !empty($_POST['mother_name']) && preg_match("/^[a-zA-Z\s'-]+$/", $_POST['mother_name']) ? $_POST['mother_name'] : null;
             $guardian_name = !empty($_POST['guardian_name']) && preg_match("/^[a-zA-Z\s'-]+$/", $_POST['guardian_name']) ? $_POST['guardian_name'] : null;
 
-            $previousSchoolName = $_POST['previousSchoolName'];
             $bankName = !empty($_POST['bankName']) && preg_match("/^[a-zA-Z\s'-]+$/", $_POST['bankName']) ? $_POST['bankName'] : null;
             $branchOfBank = !empty($_POST['branchOfBank']) && preg_match("/^[a-zA-Z\s'-]+$/", $_POST['branchOfBank']) ? $_POST['branchOfBank'] : null;
         }
@@ -52,22 +47,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $ifscNumber = $_POST['ifscNumber'];
         }
 
-        // Contact number validation - set to NULL if empty or invalid
-        $primary_contact = (!empty($_POST['primary_contact']) && preg_match("/^\d{10}$/", $_POST['primary_contact'])) ? $_POST['primary_contact'] : null;
+        // Validate primary_contact - mandatory field
+        if (empty($_POST['primary_contact']) || !preg_match("/^\d{10}$/", $_POST['primary_contact'])) {
+            echo "Primary contact must be provided and must be exactly 10 digits.";
+            exit;
+        }
+        $primary_contact = $_POST['primary_contact'];
+
+        // Validate other contact numbers - optional fields
         $father_contact = (!empty($_POST['father_contact']) && preg_match("/^\d{10}$/", $_POST['father_contact'])) ? $_POST['father_contact'] : null;
         $mother_contact = (!empty($_POST['mother_contact']) && preg_match("/^\d{10}$/", $_POST['mother_contact'])) ? $_POST['mother_contact'] : null;
         $guardian_contact = (!empty($_POST['guardian_contact']) && preg_match("/^\d{10}$/", $_POST['guardian_contact'])) ? $_POST['guardian_contact'] : null;
 
-        // Check if any of the contact numbers provided were invalid
+        // Check if any of the optional contact numbers provided were invalid
         if (
-            ($_POST['primary_contact'] && !$primary_contact) ||
             ($_POST['father_contact'] && !$father_contact) ||
             ($_POST['mother_contact'] && !$mother_contact) ||
             ($_POST['guardian_contact'] && !$guardian_contact)
         ) {
-            echo "All contact numbers must be exactly 10 digits if provided.";
+            echo "Optional contact numbers must be exactly 10 digits if provided.";
             exit;
         }
+
         // Assigning basic values to variables
         $academic_year = $_POST['academic_year'];
         $admission_number = $_POST['admission_number'];
@@ -77,13 +78,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $class = $_POST['class'];
         $section = $_POST['section'];
         $gender = $_POST['gender'];
-        $dob = $_POST['dob'];
-        $current_addressOfStudent = $_POST['current_addressOfStudent'];
-        $permanent_addressOfStudent = $_POST['permanent_addressOfStudent'];
-        $districtOfStudent = $_POST['districtOfStudent'];
-        $provinceOfStudent = $_POST['provinceOfStudent'];
-        $previousSchoolAddress = $_POST['previousSchoolAddress'];
         $feesGroup = $_POST['feesGroup'];
+
 
         // Email validation for optional fields
         $email = isset($_POST['email']) &&
@@ -96,6 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             filter_var($_POST['guardian_email'], FILTER_VALIDATE_EMAIL) ? $_POST['guardian_email'] : "";
 
         // Optional fields handling
+        $mother_tongue = !empty($_POST['mother_tongue']) ? $_POST['mother_tongue'] : null;
         $transportationRoute = !empty($_POST['transportationRoute']) ? $_POST['transportationRoute'] : null;
         $vehicleNumber = !empty($_POST['vehicleNumber']) ? $_POST['vehicleNumber'] : null;
         $pickUpPoint = !empty($_POST['pickUpPoint']) ? $_POST['pickUpPoint'] : null;
@@ -103,11 +100,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hostelRoomNumber = !empty($_POST['hostelRoomNumber']) ? $_POST['hostelRoomNumber'] : null;
         $allergiesOfStudent = !empty($_POST['allergiesOfStudent']) ? $_POST['allergiesOfStudent'] : null;
         $medicationOfStudent = !empty($_POST['medicationOfStudent']) ? $_POST['medicationOfStudent'] : null;
-        $blood_group = !empty($_POST['blood_group']) ? $_POST['blood_group'] : null;
-        $caste = !empty($_POST['caste']) ? $_POST['caste'] : null;
-        $house = !empty($_POST['house']) ? $_POST['house'] : null;
-        $religion = !empty($_POST['religion']) ? $_POST['religion'] : null;
-        $mother_tongue = !empty($_POST['mother_tongue']) ? $_POST['mother_tongue'] : null;
         $languages_known = !empty($_POST['languages_known']) ? $_POST['languages_known'] : null;
         $father_occupation = !empty($_POST['father_occupation']) ? $_POST['father_occupation'] : null;
         $mother_occupation = !empty($_POST['mother_occupation']) ? $_POST['mother_occupation'] : null;
@@ -115,6 +107,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $guardian_relation = !empty($_POST['guardian_relation']) ? $_POST['guardian_relation'] : null;
         $guardian_address = !empty($_POST['guardian_address']) ? $_POST['guardian_address'] : null;
         $otherInfo = !empty($_POST['otherInfo']) ? $_POST['otherInfo'] : null;
+        $previousSchoolName = !empty($_POST['previousSchoolName']) ? $_POST['previousSchoolName'] : null;
+        $previousSchoolAddress = !empty($_POST['previousSchoolAddress']) ? $_POST['previousSchoolAddress'] : null;
+        $blood_group = !empty($_POST['blood_group']) ? $_POST['blood_group'] : null;
+        $caste = !empty($_POST['caste']) ? $_POST['caste'] : null;
+        $religion = !empty($_POST['religion']) ? $_POST['religion'] : null;
+        $current_addressOfStudent = !empty($_POST['current_addressOfStudent']) ? $_POST['current_addressOfStudent'] : null;
+        $permanent_addressOfStudent = !empty($_POST['permanent_addressOfStudent']) ? $_POST['permanent_addressOfStudent'] : null;
+        $districtOfStudent = !empty($_POST['districtOfStudent']) ? $_POST['districtOfStudent'] : null;
+        $provinceOfStudent = !empty($_POST['provinceOfStudent']) ? $_POST['provinceOfStudent'] : null;
+        $house = !empty($_POST['house']) ? $_POST['house'] : null;
+        $dob = !empty($_POST['dob']) ? $_POST['dob'] : null;
+
     } else {
         echo "Some required fields are missing.";
         exit;
@@ -156,8 +160,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             return null;
         }
 
-        // Validate MIME type and extension
-        $fileType = mime_content_type($file["tmp_name"]);
+        // Validate MIME type using finfo_file
+        $finfo = finfo_open(FILEINFO_MIME_TYPE); // Open file info
+        $fileType = finfo_file($finfo, $file["tmp_name"]);
+        finfo_close($finfo);
+
         $fileExtension = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
 
         if ($fileType !== 'image/jpeg' || $fileExtension !== 'jpg') {
@@ -170,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $target_file = $folder . uniqid() . '_' . $fileName;
 
         if (move_uploaded_file($file["tmp_name"], $target_file)) {
-            return substr($target_file, 3);  // Remove first 3 chars (../) for DB storage
+            return substr($target_file, 3); // Remove first 3 chars (../) for DB storage
         }
 
         return null;

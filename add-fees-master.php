@@ -98,17 +98,17 @@ $userEmail = $_SESSION['userEmail'];
                         <div class="dropdown me-2">
                             <a href="#" class="btn btn-outline-light fw-normal bg-white d-flex align-items-center p-2"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="ti ti-calendar-due me-1"></i>Academic Year : 2024 / 2025
+                                <i class="ti ti-calendar-due me-1"></i>Academic Year : 2081 / 2082
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2023 / 2024
+                                    Academic Year : 2082 / 2083
                                 </a>
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2022 / 2023
+                                    Academic Year : 2083 / 2084
                                 </a>
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2021 / 2022
+                                    Academic Year : 2084 / 2085
                                 </a>
                             </div>
                         </div>
@@ -174,7 +174,7 @@ $userEmail = $_SESSION['userEmail'];
                                                     <p class="text-dark">Teachers</p>
                                                 </a>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" hidden>
                                                 <a href="add-staff.php"
                                                     class="d-block bg-warning-transparent ronded p-2 text-center mb-3 class-hover">
                                                     <div class="avatar avatar-lg rounded-circle mb-2">
@@ -185,7 +185,7 @@ $userEmail = $_SESSION['userEmail'];
                                                     <p class="text-dark">Staffs</p>
                                                 </a>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" hidden>
                                                 <a href="add-invoice.php"
                                                     class="d-block bg-info-transparent ronded p-2 text-center mb-3 class-hover">
                                                     <div class="avatar avatar-lg mb-2">
@@ -354,7 +354,7 @@ $userEmail = $_SESSION['userEmail'];
                                             <img src="images/avatar-27.jpg" alt="img">
                                         </span>
                                         <div>
-                                            <h6 class="">Kevin Larry</h6>
+                                            <h6 class=""><?php echo $_SESSION['username']; ?></h6>
                                             <p class="text-primary mb-0">Administrator</p>
                                         </div>
                                     </div>
@@ -485,7 +485,7 @@ $userEmail = $_SESSION['userEmail'];
                             <ul>
                                 <li>
                                     <a href="classes.php"><i
-                                            class="ti ti-school-bell"></i><span>Classes</span></a>
+                                            class="ti ti-school-bell"></i><span>Courses</span></a>
                                     <ul hidden>
                                         <li><a href="classes.php">All Classes</a></li>
                                         <li><a href="schedule-classes.php">Schedule</a></li>
@@ -498,7 +498,7 @@ $userEmail = $_SESSION['userEmail'];
                                             Routine</span></a></li>
                                 <li hidden><a href="class-section.php"><i
                                             class="ti ti-square-rotated-forbid-2"></i><span>Section</span></a></li>
-                                <li><a href="class-subject.php"><i class="ti ti-book"></i><span>Subject</span></a></li>
+                                <li><a href="class-subject.php"><i class="ti ti-book"></i><span>Sub-courses</span></a></li>
                                 <li hidden><a href="class-syllabus.php"><i
                                             class="ti ti-book-upload"></i><span>Syllabus</span></a></li>
                                 <li hidden><a href="class-time-table.php"><i class="ti ti-table"></i><span>Time
@@ -1065,7 +1065,7 @@ $userEmail = $_SESSION['userEmail'];
 
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="php/addfees.php" method="POST">
+                        <form action="php/addfees.php" method="POST" id="feeForm">
                             <?php
                             require_once 'php/databaseConnection.php';
 
@@ -1096,6 +1096,7 @@ $userEmail = $_SESSION['userEmail'];
                                 </div>
                                 <div class="card-body pb-1">
                                     <div class="row row-cols-xxl-5 row-cols-md-6">
+                                        
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Student ID</label>
@@ -1105,7 +1106,7 @@ $userEmail = $_SESSION['userEmail'];
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Name of Student</label>
-                                                <input type="text" class="form-control" name="nameOfStudent" value="<?php echo htmlspecialchars($row['fnameOfStudent']) . " " . htmlspecialchars($row['lnameOfStudent']); ?>" readonly>
+                                                <input type="text" class="form-control" name="nameOfStudent" value="<?php echo htmlspecialchars($row['fnameOfStudent']) . ' ' . htmlspecialchars($row['lnameOfStudent']); ?>" readonly>
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
@@ -1132,38 +1133,40 @@ $userEmail = $_SESSION['userEmail'];
                                                 <input type="text" class="form-control" name="feesGroup" value="<?php echo htmlspecialchars($row['feesGroup']); ?>" readonly>
                                             </div>
                                         </div>
-                                        <?php 
-
+                                        <?php
                                         $feesGroupArray = explode(', ', $row['feesGroup']);
                                         $totalFees = 0;
+                                        $totalDiscount = 0;
 
-                                        foreach ($feesGroupArray as $feesGroup){
-                                            $stmt = $mysqli->prepare("SELECT `feesGroupAmount` FROM `addfeesgroup` WHERE feesGroup = ?");
-                                            $stmt->bind_param("s", $feesGroup);
-                                            $stmt->execute();
-                                            $result = $stmt->get_result();
+                                        foreach ($feesGroupArray as $feesGroup) {
+                                            $feesGroup = trim($feesGroup);
+                                            $sql = "SELECT `feesGroupAmount` FROM `addfeesgroup` WHERE feesGroupID = '$feesGroup';";
+                                            $result = $mysqli->query($sql);
                                             $row = $result->fetch_assoc();
                                             $feesGroupAmount = substr($row['feesGroupAmount'], 3);
-                                            //convert to integer then add to totalfees
                                             $feesGroupAmount = filter_var($feesGroupAmount, FILTER_SANITIZE_NUMBER_INT);
                                             $totalFees += $feesGroupAmount;
-                                            $stmt->close();
                                         }
 
-                                        $stmt = $mysqli->prepare("SELECT `AmountPaid` FROM `feescollection` WHERE StudentID = ?;");
+                                        $stmt = $mysqli->prepare("SELECT `AmountPaid`, `discount` FROM `feescollection` WHERE StudentID = ?;");
                                         $stmt->bind_param("i", $_GET['id']);
                                         $stmt->execute();
                                         $result = $stmt->get_result();
                                         $totalPaid = 0;
+
                                         while ($row = $result->fetch_assoc()) {
                                             $AmountPaid = substr($row['AmountPaid'], 3);
+                                            $discountAmt = substr($row['discount'], 3);
                                             $AmountPaid = filter_var($AmountPaid, FILTER_SANITIZE_NUMBER_INT);
+                                            $discountAmt = filter_var($discountAmt, FILTER_SANITIZE_NUMBER_INT);
                                             $totalPaid += $AmountPaid;
+                                            $totalDiscount += $discountAmt;
                                         }
+
                                         $stmt->close();
 
-                                        $totalFees = filter_var($totalFees, FILTER_SANITIZE_NUMBER_INT);
-                                        $pendingAmount = $totalFees - $totalPaid;
+                                        $totalFees = intval($totalFees);
+                                        $pendingAmount = $totalFees - $totalPaid - $totalDiscount;
                                         ?>
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-3">
@@ -1174,7 +1177,19 @@ $userEmail = $_SESSION['userEmail'];
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Pending Amount</label>
-                                                <input type="text" class="form-control" name="pendingAmount" value="Rs <?php echo $pendingAmount ?>" readonly>
+                                                <input type="text" class="form-control" id="pendingAmount" name="pendingAmount" value="Rs <?php echo $pendingAmount ?>" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Discount</label>
+                                                <input type="text" class="form-control" id="discount" name="discount" value="Rs ">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Final Pending Amount</label>
+                                                <input type="text" class="form-control" id="finalPendingAmount" name="finalPendingAmount" value="Rs <?php echo $pendingAmount ?>" readonly>
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
@@ -1186,15 +1201,21 @@ $userEmail = $_SESSION['userEmail'];
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Now Paying</label>
-                                                <input type="text" class="form-control" name="nowPaying" value="Rs &nbsp;">
+                                                <input type="text" class="form-control" id="nowPaying" name="nowPaying" value="Rs ">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Remarks</label>
+                                                <textarea class="form-control" name="remarks" placeholder="The money you pay matters!!" style="width: 465px; height: 40px;"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="text-end">
                                 <button type="button" class="btn btn-light me-3">Cancel</button>
+
                                 <button type="submit" class="btn btn-primary">Add Fee Master</button>
                             </div>
                         </form>
@@ -1204,28 +1225,62 @@ $userEmail = $_SESSION['userEmail'];
         </div>
 
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const pendingAmountInput = document.getElementById("pendingAmount");
+            const discountInput = document.getElementById("discount");
+            const finalPendingAmountInput = document.getElementById("finalPendingAmount");
+            const nowPayingInput = document.getElementById("nowPaying");
+            const form = document.getElementById("feeForm");
+
+            function formatInputWithPrefix(inputField) {
+                inputField.addEventListener("input", function() {
+                    let value = inputField.value.replace(/[^0-9.]/g, "");
+                    inputField.value = value ? "Rs " + value : "Rs ";
+                });
+            }
+
+            function updateFinalPendingAmount() {
+                const pendingAmount = parseFloat(pendingAmountInput.value.replace("Rs ", "")) || 0;
+                let discount = parseFloat(discountInput.value.replace("Rs ", "")) || 0;
+                let nowPaying = parseFloat(nowPayingInput.value.replace("Rs ", "")) || 0;
+
+                if (discount < 0) discount = 0;
+                if (nowPaying < 0) nowPaying = 0;
+
+                const discountedAmount = pendingAmount - discount;
+                if (nowPaying > discountedAmount) nowPaying = discountedAmount;
+
+                const finalPendingAmount = discountedAmount - nowPaying;
+
+                finalPendingAmountInput.value = "Rs " + (finalPendingAmount > 0 ? finalPendingAmount.toFixed(2) : "0.00");
+                discountInput.value = "Rs " + discount;
+                nowPayingInput.value = "Rs " + nowPaying;
+            }
+
+            formatInputWithPrefix(discountInput);
+            formatInputWithPrefix(nowPayingInput);
+
+            discountInput.addEventListener("input", updateFinalPendingAmount);
+            nowPayingInput.addEventListener("input", updateFinalPendingAmount);
+
+            form.addEventListener("submit", function(e) {
+                if (!discountInput.value.trim()) discountInput.value = "Rs 0";
+                if (!nowPayingInput.value.trim()) nowPayingInput.value = "Rs 0";
+
+                const pendingAmount = parseFloat(pendingAmountInput.value.replace("Rs ", "")) || 0;
+                const finalPendingAmount = parseFloat(finalPendingAmountInput.value.replace("Rs ", "")) || 0;
+
+                if (pendingAmount === 0 && finalPendingAmount === 0) {
+                    alert("OOps, Nothing to pay!!!");
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
 
 
-    <script src="js/jquery-3.7.1.min.js" type="64fcbc7fb2835ef23848ab43-text/javascript"></script>
 
-    <script src="js/bootstrap.bundle.min.js" type="64fcbc7fb2835ef23848ab43-text/javascript"></script>
-
-    <script src="js/moment.js" type="64fcbc7fb2835ef23848ab43-text/javascript"></script>
-    <script src="js/daterangepicker.js" type="64fcbc7fb2835ef23848ab43-text/javascript"></script>
-
-    <script src="js/feather.min.js" type="64fcbc7fb2835ef23848ab43-text/javascript"></script>
-
-    <script src="js/jquery.slimscroll.min.js" type="64fcbc7fb2835ef23848ab43-text/javascript"></script>
-
-    <script src="js/select2.min.js" type="64fcbc7fb2835ef23848ab43-text/javascript"></script>
-
-    <script src="js/moment.js" type="64fcbc7fb2835ef23848ab43-text/javascript"></script>
-    <script src="js/bootstrap-datetimepicker.min.js" type="64fcbc7fb2835ef23848ab43-text/javascript"></script>
-
-    <script src="js/bootstrap-tagsinput.js" type="64fcbc7fb2835ef23848ab43-text/javascript"></script>
-
-    <script src="js/script.js" type="64fcbc7fb2835ef23848ab43-text/javascript"></script>
-    <script src="js/rocket-loader.min.js" data-cf-settings="64fcbc7fb2835ef23848ab43-|49" defer=""></script>
 </body>
 
 </html>

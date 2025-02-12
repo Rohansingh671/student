@@ -3,32 +3,22 @@ require_once 'databaseConnection.php';
 $mysqli = db_connect();
 
 if ($mysqli) {
-    // Initialize default values
-    $currentFeesGroupName = '';
-    $groups = array(); // Array to store all fees groups
+    $groups = array();
+    $groupselected = array();
 
-    if (isset($_GET['id'])) {
-        // Fetch the current fees group ID for the specific entry
-        $id = $_GET['id'];
-        $stmt = $mysqli->prepare("SELECT feesGroup FROM `addfeesgroup` WHERE `ID` = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $stmt->store_result();
-        $stmt->bind_result($feesGroup);
-        if ($stmt->fetch()) {
-            $currentFeesGroupName = $feesGroup;
-        }
-        $stmt->close();
-    }
-        // Fetch all fees groups for dropdown options
-        $stmt = $mysqli->prepare("SELECT `ID`, `feesGroupID`, `feesGroup`, `feesGroupAmount`, `remark`, `feesGroupStatus` FROM `addfeesgroup`");
+    $feegroup = explode(",", $feesGroup_name);
+    //print each of the $feegrsoup
+    foreach ($feegroup as $value) {
+
+        $value = trim($value);
+
+        $stmt = $mysqli->prepare("SELECT `ID`, `feesGroupID`, `feesGroup`, `feesGroupAmount`, `remark`, `feesGroupStatus` FROM `addfeesgroup` WHERE `feesGroupID` = ?");
+        $stmt->bind_param("s", $value);
         $stmt->execute();
         $stmt->store_result();
         $stmt->bind_result($ID, $feesGroupID, $feesGroup, $feesGroupAmount, $remark, $feesGroupStatus);
-
-        // Populate the `$groups` array
         while ($stmt->fetch()) {
-            $groups[] = array(
+            $groupselected[] = array(
                 'ID' => $ID,
                 'feesGroupID' => $feesGroupID,
                 'feesGroup' => $feesGroup,
@@ -37,9 +27,28 @@ if ($mysqli) {
                 'feesGroupStatus' => $feesGroupStatus
             );
         }
-        $stmt->close(); // Close the statement after populating the array
+        $stmt->close();
     }
- else {
+
+    // Fetch all fees groups for dropdown options
+    $stmt = $mysqli->prepare("SELECT `ID`, `feesGroupID`, `feesGroup`, `feesGroupAmount`, `remark`, `feesGroupStatus` FROM `addfeesgroup`");
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($ID, $feesGroupID, $feesGroup, $feesGroupAmount, $remark, $feesGroupStatus);
+
+    // Populate the `$groups` array
+    while ($stmt->fetch()) {
+        $groups[] = array(
+            'ID' => $ID,
+            'feesGroupID' => $feesGroupID,
+            'feesGroup' => $feesGroup,
+            'feesGroupAmount' => $feesGroupAmount,
+            'remark' => $remark,
+            'feesGroupStatus' => $feesGroupStatus
+        );
+    }
+    $stmt->close(); // Close the statement after populating the array
+} else {
     echo "Database connection failed: " . $mysqli->connect_error;
     exit;
 }

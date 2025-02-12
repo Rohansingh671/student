@@ -93,18 +93,19 @@ $userEmail = $_SESSION['userEmail'];
 
                     <div class="d-flex align-items-center">
                         <div class="dropdown me-2">
-                            <a href="#" class="btn btn-outline-light fw-normal bg-white d-flex align-items-center p-2" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="ti ti-calendar-due me-1"></i>Academic Year : 2024 / 2025
+                            <a href="#" class="btn btn-outline-light fw-normal bg-white d-flex align-items-center p-2"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="ti ti-calendar-due me-1"></i>Academic Year : 2081 / 2082
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2023 / 2024
+                                    Academic Year : 2082 / 2083
                                 </a>
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2022 / 2023
+                                    Academic Year : 2083 / 2084
                                 </a>
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2021 / 2022
+                                    Academic Year : 2084 / 2085
                                 </a>
                             </div>
                         </div>
@@ -156,7 +157,7 @@ $userEmail = $_SESSION['userEmail'];
                                                     <p class="text-dark">Teachers</p>
                                                 </a>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" hidden>
                                                 <a href="add-staff.php" class="d-block bg-warning-transparent ronded p-2 text-center mb-3 class-hover">
                                                     <div class="avatar avatar-lg rounded-circle mb-2">
                                                         <span class="d-inline-flex align-items-center justify-content-center w-100 h-100 bg-warning rounded-circle"><i class="ti ti-users-group"></i></span>
@@ -164,7 +165,7 @@ $userEmail = $_SESSION['userEmail'];
                                                     <p class="text-dark">Staffs</p>
                                                 </a>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" hidden>
                                                 <a href="add-invoice.php" class="d-block bg-info-transparent ronded p-2 text-center mb-3 class-hover">
                                                     <div class="avatar avatar-lg mb-2">
                                                         <span class="d-inline-flex align-items-center justify-content-center w-100 h-100 bg-info rounded-circle"><i class="ti ti-license"></i></span>
@@ -428,9 +429,9 @@ $userEmail = $_SESSION['userEmail'];
                         </li>
                         <li>
                             <ul>
-                            <li class="active">
+                                <li class="active">
                                     <a href="classes.php"><i
-                                            class="ti ti-school-bell"></i><span>Classes</span></a>
+                                            class="ti ti-school-bell"></i><span>Courses</span></a>
                                     <ul hidden>
                                         <li><a href="classes.php">All Classes</a></li>
                                         <li><a href="schedule-classes.php">Schedule</a></li>
@@ -441,7 +442,7 @@ $userEmail = $_SESSION['userEmail'];
                                 <li hidden><a href="class-routine.php"><i class="ti ti-bell-school"></i><span>Class
                                             Routine</span></a></li>
                                 <li hidden><a href="class-section.php"><i class="ti ti-square-rotated-forbid-2"></i><span>Section</span></a></li>
-                                <li><a href="class-subject.php"><i class="ti ti-book"></i><span>Subject</span></a></li>
+                                <li><a href="class-subject.php"><i class="ti ti-book"></i><span>Sub-courses</span></a></li>
                                 <li hidden><a href="class-syllabus.php"><i class="ti ti-book-upload"></i><span>Syllabus</span></a></li>
                                 <li hidden><a href="class-time-table.php"><i class="ti ti-table"></i><span>Time
                                             Table</span></a></li>
@@ -948,16 +949,16 @@ $userEmail = $_SESSION['userEmail'];
 
                 <div class="d-md-flex d-block align-items-center justify-content-between mb-3">
                     <div class="my-auto mb-2">
-                        <h3 class="page-title mb-1">Classes List</h3>
+                        <h3 class="page-title mb-1">Courses List</h3>
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item">
                                     <a href="index.php">Dashboard</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="javascript:void(0);">Classes </a>
+                                    <a href="javascript:void(0);">Courses </a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">All Classes</li>
+                                <li class="breadcrumb-item active" aria-current="page">All Courses</li>
                             </ol>
                         </nav>
                     </div>
@@ -987,7 +988,7 @@ $userEmail = $_SESSION['userEmail'];
                         </div>
                         <div class="mb-2">
                             <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_class"><i class="ti ti-square-rounded-plus-filled me-2"></i>Add
-                                Class</a>
+                                Course</a>
                         </div>
                     </div>
                 </div>
@@ -995,7 +996,7 @@ $userEmail = $_SESSION['userEmail'];
 
                 <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between flex-wrap pb-0">
-                        <h4 class="mb-3">Classes List</h4>
+                        <h4 class="mb-3">Courses List</h4>
                         <div class="d-flex align-items-center flex-wrap">
                             <div class="input-icon-start mb-3 me-2 position-relative">
                                 <span class="icon-addon">
@@ -1152,12 +1153,12 @@ $userEmail = $_SESSION['userEmail'];
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Add Class</h4>
+                        <h4 class="modal-title">Add Course</h4>
                         <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
                             <i class="ti ti-x"></i>
                         </button>
                     </div>
-                    <form action="php/addClass.php" method="POSt">
+                    <form action="php/addClass.php" method="POST">
                         <div class="modal-body">
                             <div class="row">
                                 <?php
@@ -1177,166 +1178,166 @@ $userEmail = $_SESSION['userEmail'];
                                 ?>
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <label class="form-label">Class ID</label>
+                                        <label class="form-label">Course ID</label>
                                         <input type="text" class="form-control" name="classID" value="CID<?php echo $total_class_id ?>" readonly>
                                     </div>
 
-                                <div class="mb-3">
-                                    <label class="form-label">Class Name</label>
-                                    <input type="text" class="form-control" name="className">
-                                </div>
-                                <div class="col-xxl col-xl-3 col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Status</label>
-                                        <select class="select" name="classStatus">
-                                            <option value="">Select</option>
-                                            <option value="Active">Active</option>
-                                            <option value="Inactive">Inactive</option>
+                                        <label class="form-label">Course Name</label>
+                                        <input type="text" class="form-control" name="className">
+                                    </div>
+                                    <div class="col-xxl col-xl-3 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Status</label>
+                                            <select class="select" name="classStatus">
+                                                <option value="">Select</option>
+                                                <option value="Active">Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Add Course</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="edit_class">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Class</h4>
+                        <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="ti ti-x"></i>
+                        </button>
+                    </div>
+                    <form action="php/updateClass.php" method="POST">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Class ID</label>
+                                        <input type="text" class="form-control" placeholder="Enter Class ID" value="<?php echo htmlspecialchars($classID); ?>" name="classID" id="classID" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Class Name</label>
+                                        <input type="text" class="form-control" placeholder="Enter Class Name" value="<?php echo htmlspecialchars($className); ?>" name="className" id="className" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Section</label>
+                                        <select class="select" name="classSection" id="classSection" required>
+                                            <option disabled>Select</option>
+                                            <option value="A" <?php if ($classSection == 'A') echo 'selected'; ?>>A</option>
+                                            <option value="B" <?php if ($classSection == 'B') echo 'selected'; ?>>B</option>
+                                            <option value="C" <?php if ($classSection == 'C') echo 'selected'; ?>>C</option>
+                                            <option value="D" <?php if ($classSection == 'D') echo 'selected'; ?>>D</option>
                                         </select>
                                     </div>
-                                </div>
-
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <a href="#" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</a>
-                    <button type="submit" class="btn btn-primary">Add Class</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="modal fade" id="edit_class">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Edit Class</h4>
-                    <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="ti ti-x"></i>
-                    </button>
-                </div>
-                <form action="php/updateClass.php" method="POST">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label">Class ID</label>
-                                    <input type="text" class="form-control" placeholder="Enter Class ID" value="<?php echo htmlspecialchars($classID); ?>" name="classID" id="classID" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Class Name</label>
-                                    <input type="text" class="form-control" placeholder="Enter Class Name" value="<?php echo htmlspecialchars($className); ?>" name="className" id="className" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Section</label>
-                                    <select class="select" name="classSection" id="classSection" required>
-                                        <option disabled>Select</option>
-                                        <option value="A" <?php if ($classSection == 'A') echo 'selected'; ?>>A</option>
-                                        <option value="B" <?php if ($classSection == 'B') echo 'selected'; ?>>B</option>
-                                        <option value="C" <?php if ($classSection == 'C') echo 'selected'; ?>>C</option>
-                                        <option value="D" <?php if ($classSection == 'D') echo 'selected'; ?>>D</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">No of Students</label>
-                                    <input type="number" class="form-control" placeholder="Enter No of Students" value="<?php echo htmlspecialchars($numberOfStudent); ?>" name="numberOfStudent" id="numberOfStudent" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">No of Subjects</label>
-                                    <input type="number" class="form-control" placeholder="Enter No of Subjects" value="<?php echo htmlspecialchars($numberOfSubject); ?>" name="numberOfSubject" id="numberOfSubject" required>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="status-title">
-                                        <h5>Status</h5>
-                                        <p>Change the Status by toggling</p>
+                                    <div class="mb-3">
+                                        <label class="form-label">No of Students</label>
+                                        <input type="number" class="form-control" placeholder="Enter No of Students" value="<?php echo htmlspecialchars($numberOfStudent); ?>" name="numberOfStudent" id="numberOfStudent" required>
                                     </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="classStatus" name="classStatus" <?php echo ($classStatus == 'Active') ? 'checked' : ''; ?>>
+                                    <div class="mb-3">
+                                        <label class="form-label">No of Subjects</label>
+                                        <input type="number" class="form-control" placeholder="Enter No of Subjects" value="<?php echo htmlspecialchars($numberOfSubject); ?>" name="numberOfSubject" id="numberOfSubject" required>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="status-title">
+                                            <h5>Status</h5>
+                                            <p>Change the Status by toggling</p>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="classStatus" name="classStatus" <?php echo ($classStatus == 'Active') ? 'checked' : ''; ?>>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</a>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="modal fade" id="delete-modal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <form action="classes.php">
-                    <div class="modal-body text-center">
-                        <span class="delete-icon">
-                            <i class="ti ti-trash-x"></i>
-                        </span>
-                        <h4>Confirm Deletion</h4>
-                        <p>You want to delete all the marked items, this cant be undone once you delete.</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="javascript:void(0);" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</a>
-                            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                        <div class="modal-footer">
+                            <a href="#" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
                         </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="modal fade" id="view_class">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="d-flex align-items-center">
-                        <h4 class="modal-title">Class Details</h4>
-                        <span class="badge badge-soft-success ms-2"><i class="ti ti-circle-filled me-1 fs-5"></i>Active</span>
-                    </div>
-                    <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="ti ti-x"></i>
-                    </button>
+                    </form>
                 </div>
-                <form action="classes.php">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="class-detail-info">
-                                    <p>Class Name</p>
-                                    <span>III</span>
-                                </div>
+            </div>
+        </div>
+
+
+
+        <div class="modal fade" id="delete-modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form action="classes.php">
+                        <div class="modal-body text-center">
+                            <span class="delete-icon">
+                                <i class="ti ti-trash-x"></i>
+                            </span>
+                            <h4>Confirm Deletion</h4>
+                            <p>You want to delete all the marked items, this cant be undone once you delete.</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="javascript:void(0);" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</a>
+                                <button type="submit" class="btn btn-danger">Yes, Delete</button>
                             </div>
-                            <div class="col-md-6">
-                                <div class="class-detail-info">
-                                    <p>Section</p>
-                                    <span>A</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="view_class">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="d-flex align-items-center">
+                            <h4 class="modal-title">Class Details</h4>
+                            <span class="badge badge-soft-success ms-2"><i class="ti ti-circle-filled me-1 fs-5"></i>Active</span>
+                        </div>
+                        <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="ti ti-x"></i>
+                        </button>
+                    </div>
+                    <form action="classes.php">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="class-detail-info">
+                                        <p>Class Name</p>
+                                        <span>III</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="class-detail-info">
-                                    <p>No of Subjects</p>
-                                    <span>05</span>
+                                <div class="col-md-6">
+                                    <div class="class-detail-info">
+                                        <p>Section</p>
+                                        <span>A</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="class-detail-info">
-                                    <p>No of Students</p>
-                                    <span>25</span>
+                                <div class="col-md-6">
+                                    <div class="class-detail-info">
+                                        <p>No of Subjects</p>
+                                        <span>05</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="class-detail-info">
+                                        <p>No of Students</p>
+                                        <span>25</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
     </div>
 

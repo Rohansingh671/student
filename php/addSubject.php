@@ -6,21 +6,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if required fields are present and not empty
     if (!empty($_POST['subject_id']) && !empty($_POST['name']) && !empty($_POST['code']) && !empty($_POST['type'])) {
-        
+
         // Assign variables after basic sanitization
         $subject_id = htmlspecialchars(trim($_POST['subject_id']));
         $name = htmlspecialchars(trim($_POST['name']));
         $code = htmlspecialchars(trim($_POST['code']));
         $type = htmlspecialchars(trim($_POST['type']));
-        
+
         // Set status as 'Active' if the switch is on, otherwise 'Inactive'
         $status = !empty($_POST['status']) ? htmlspecialchars(trim($_POST['status'])) : 'Inactive';
 
         // Validate Subject ID and Name (only letters, numbers, spaces allowed)
-        if (!preg_match("/^[a-zA-Z0-9\s]+$/", $subject_id) || !preg_match("/^[a-zA-Z0-9\s]+$/", $name)) {
-            echo "Subject ID and Name can only contain letters, numbers, and spaces.";
+        if (
+            !preg_match("/^[\p{Devanagari}a-zA-Z0-9\s\(\)]+$/u", $subject_id) ||
+            !preg_match("/^[\p{Devanagari}a-zA-Z0-9\s\(\)\-]+$/u", $name)
+        ) {
+            echo "Subject ID and Name can only contain letters (including Nepali), numbers, spaces, and brackets ().";
             exit;
         }
+
+
 
         // Validate Code (only numbers allowed)
         if (!is_numeric($code)) {
@@ -53,11 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Close statement and database connection
         $stmt->close();
         $mysqli->close();
-
     } else {
         echo "Required fields are missing.";
     }
 } else {
     echo "Invalid request method.";
 }
-?>

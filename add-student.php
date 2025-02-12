@@ -45,6 +45,8 @@ $userEmail = $_SESSION['userEmail'];
     <link rel="stylesheet" href="css/bootstrap-tagsinput.css">
 
     <link rel="stylesheet" href="css/style.css">
+
+    <link href="css/nepali.datepicker.v4.0.5.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -98,17 +100,17 @@ $userEmail = $_SESSION['userEmail'];
                         <div class="dropdown me-2">
                             <a href="#" class="btn btn-outline-light fw-normal bg-white d-flex align-items-center p-2"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="ti ti-calendar-due me-1"></i>Academic Year : 2024 / 2025
+                                <i class="ti ti-calendar-due me-1"></i>Academic Year : 2081 / 2082
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2023 / 2024
+                                    Academic Year : 2082 / 2083
                                 </a>
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2022 / 2023
+                                    Academic Year : 2083 / 2084
                                 </a>
                                 <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">
-                                    Academic Year : 2021 / 2022
+                                    Academic Year : 2084 / 2085
                                 </a>
                             </div>
                         </div>
@@ -174,7 +176,7 @@ $userEmail = $_SESSION['userEmail'];
                                                     <p class="text-dark">Teachers</p>
                                                 </a>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" hidden>
                                                 <a href="add-staff.php"
                                                     class="d-block bg-warning-transparent ronded p-2 text-center mb-3 class-hover">
                                                     <div class="avatar avatar-lg rounded-circle mb-2">
@@ -185,7 +187,7 @@ $userEmail = $_SESSION['userEmail'];
                                                     <p class="text-dark">Staffs</p>
                                                 </a>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" hidden>
                                                 <a href="add-invoice.php"
                                                     class="d-block bg-info-transparent ronded p-2 text-center mb-3 class-hover">
                                                     <div class="avatar avatar-lg mb-2">
@@ -359,7 +361,7 @@ $userEmail = $_SESSION['userEmail'];
                                         </div>
                                     </div>
                                     <hr class="m-0">
-                                    <a class="dropdown-item d-inline-flex align-items-center p-2" href="login.php"><i
+                                    <a class="dropdown-item d-inline-flex align-items-center p-2" href="login-2.php"><i
                                             class="ti ti-login me-2"></i>Logout</a>
                                 </div>
                             </div>
@@ -485,7 +487,7 @@ $userEmail = $_SESSION['userEmail'];
                             <ul>
                                 <li>
                                     <a href="classes.php"><i
-                                            class="ti ti-school-bell"></i><span>Classes</span></a>
+                                            class="ti ti-school-bell"></i><span>Courses</span></a>
                                     <ul hidden>
                                         <li><a href="classes.php">All Classes</a></li>
                                         <li><a href="schedule-classes.php">Schedule</a></li>
@@ -498,7 +500,7 @@ $userEmail = $_SESSION['userEmail'];
                                             Routine</span></a></li>
                                 <li hidden><a href="class-section.php"><i
                                             class="ti ti-square-rotated-forbid-2"></i><span>Section</span></a></li>
-                                <li><a href="class-subject.php"><i class="ti ti-book"></i><span>Subject</span></a></li>
+                                <li><a href="class-subject.php"><i class="ti ti-book"></i><span>Sub-courses</span></a></li>
                                 <li hidden><a href="class-syllabus.php"><i
                                             class="ti ti-book-upload"></i><span>Syllabus</span></a></li>
                                 <li hidden><a href="class-time-table.php"><i class="ti ti-table"></i><span>Time
@@ -1105,9 +1107,9 @@ $userEmail = $_SESSION['userEmail'];
                                                 <label class="form-label">Academic Year &nbsp; <i class="fa-sharp fa-solid fa-star"></i></label>
                                                 <select class="select" name="academic_year">
                                                     <option value="">Select Academic Year</option>
-                                                    <option>June 2024/25</option>
-                                                    <option>June 2023/24</option>
-                                                    <option>June 2022/23</option>
+                                                    <option>Baisakh 2081/82</option>
+                                                    <option>Baisakh 2082/83</option>
+                                                    <option>Baisakh 2083/84</option>
                                                 </select>
 
                                             </div>
@@ -1142,14 +1144,14 @@ $userEmail = $_SESSION['userEmail'];
                                                     <span class="input-icon-addon">
                                                         <i class="ti ti-calendar"></i>
                                                     </span>
-                                                    <input type="date" class="form-control" name="admission_date">
+                                                    <input type="date" id="adm_date" class="form-control" name="admission_date" placeholder="Select Nepali Date">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Roll Number &nbsp; <i class="fa-sharp fa-solid fa-star"></i></label>
-                                                <input type="text" class="form-control" name="roll_number">
+                                                <input type="text" class="form-control" name="roll_number" value="RN<?php echo $total_student_id ?>" readonly>
                                             </div>
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
@@ -1192,12 +1194,17 @@ $userEmail = $_SESSION['userEmail'];
                                             </div>
                                         </div>
 
+                                        <!-- class-addition -->
+
+                                        <!-- ----------------------- -->
+
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <?php
                                             require_once 'php/subjectDataFromDatabase.php';
                                             ?>
                                             <div class="mb-3">
-                                                <label class="form-label">Sub-Course</label>
+                                                <label class="form-label">Sub-Course &nbsp; <i class="fa-sharp fa-solid fa-star"></i></label>
+
                                                 <select class="select" name="section">
                                                     <option value="">Select</option>
                                                     <?php
@@ -1208,6 +1215,12 @@ $userEmail = $_SESSION['userEmail'];
                                                 </select>
                                             </div>
                                         </div>
+
+                                        <!-- subcourse-addition -->
+
+                                        <!-- ----------------------- -->
+
+
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Gender &nbsp; <i class="fa-sharp fa-solid fa-star"></i></label>
@@ -1220,16 +1233,72 @@ $userEmail = $_SESSION['userEmail'];
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Date of Birth &nbsp; <i class="fa-sharp fa-solid fa-star"></i></label>
+                                                <label class="form-label">Primary Contact Number &nbsp; <i class="fa-sharp fa-solid fa-star"></i></label>
+                                                <input type="text" class="form-control" name="primary_contact">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6">
+                                            <?php
+                                            require_once 'php/feesGroupDataFromDatabase.php';
+                                            ?>
+                                            <div class="mb-3">
+                                                <label class="form-label">Fees Group &nbsp; <i class="fa-sharp fa-solid fa-star"></i></label>
+
+                                                <select class="select" name="feesGroup[]" multiple>
+                                                    <option value="">Select</option>
+                                                    <?php
+                                                    foreach ($groups as $group) {
+                                                        echo "<option value='" . htmlspecialchars($group['feesGroupID']) . "'>" . htmlspecialchars($group['feesGroup']) . "</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Date of Birth</label>
                                                 <div class="input-icon position-relative">
                                                     <span class="input-icon-addon">
                                                         <i class="ti ti-calendar"></i>
                                                     </span>
-                                                    <input type="date" class="form-control" name="dob">
+                                                    <input type="date" id="dob" class="form-control" name="dob" placeholder="Select Nepali Date">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
+                                        <div class="col-xxl col-xl-3 col-md-6" hidden>
+                                            <div class="mb-3">
+                                                <label class="form-label">Email Address</label>
+                                                <input type="email" class="form-control" name="email">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6" hidden>
+                                            <div class="mb-3">
+                                                <label class="form-label">Mother Tongue</label>
+                                                <select class="select" name="mother_tongue">
+                                                    <option value="">Select</option>
+                                                    <option>Hindi</option>
+                                                    <option>English</option>
+                                                    <option>Nepali</option>
+                                                    <option>Bhojpuri</option>
+                                                    <option>Maithli</option>
+                                                    <option>Newari</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6" hidden>
+                                            <div class="mb-3">
+                                                <label class="form-label">Language Known</label>
+                                                <input class="input-tags form-control" type="text" data-role="tagsinput"
+                                                    name="languages_known" placeholder="Known Language">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="mb-3">
+                                                <label class="form-label">Citizenship No.</label>
+                                                <input type="text" class="form-control" name="ifscNumber">
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl col-xl-3 col-md-6" hidden>
                                             <div class="mb-3">
                                                 <label class="form-label">Blood Group</label>
                                                 <select class="select" name="blood_group">
@@ -1247,17 +1316,17 @@ $userEmail = $_SESSION['userEmail'];
                                         </div>
                                         <div class="col-xxl col-xl-3 col-md-6">
                                             <div class="mb-3">
-                                                <label class="form-label">House</label>
+                                                <label class="form-label">Batch shift</label>
                                                 <select class="select" name="house">
                                                     <option value="">Select</option>
-                                                    <option>Red</option>
-                                                    <option>Blue</option>
-                                                    <option>Green</option>
-                                                    <option>Yellow</option>
+                                                    <option>Morning</option>
+                                                    <option>Afternoon</option>
+                                                    <option>Evening</option>
+                                                    <option>Night</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
+                                        <div class="col-xxl col-xl-3 col-md-6" hidden>
                                             <div class="mb-3">
                                                 <label class="form-label">Religion</label>
                                                 <select class="select" name="religion">
@@ -1272,227 +1341,15 @@ $userEmail = $_SESSION['userEmail'];
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
+                                        <div class="col-xxl col-xl-3 col-md-6" hidden>
                                             <div class="mb-3">
                                                 <label class="form-label">Caste</label>
                                                 <input type="text" class="form-control" name="caste">
                                             </div>
                                         </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Primary Contact Number</label>
-                                                <input type="text" class="form-control" name="primary_contact">
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Email Address</label>
-                                                <input type="email" class="form-control" name="email">
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Mother Tongue</label>
-                                                <select class="select" name="mother_tongue">
-                                                    <option value="">Select</option>
-                                                    <option>English</option>
-                                                    <option>Spanish</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Language Known</label>
-                                                <input class="input-tags form-control" type="text" data-role="tagsinput"
-                                                    name="languages_known" value="English, Spanish">
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl col-xl-3 col-md-6">
-                                            <?php
-                                            require_once 'php/feesGroupDataFromDatabase.php';
-                                            ?>
-                                            <div class="mb-3">
-                                                <label class="form-label">Fees Group &nbsp; <i class="fa-sharp fa-solid fa-star"></i></label>
-                                                <select class="select" name="feesGroup[]" multiple>
-                                                    <option value="">Select</option>
-                                                    <?php
-                                                    foreach ($groups as $group) {
-                                                        echo "<option value='" . htmlspecialchars($group['feesGroup']) . "'>" . htmlspecialchars($group['feesGroup']) . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="card">
-                                <div class="card-header bg-light">
-                                    <div class="d-flex align-items-center">
-                                        <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-                                            <i class="ti ti-user-shield fs-16"></i>
-                                        </span>
-                                        <h4 class="text-dark">Parents &amp; Guardian Information</h4>
-                                    </div>
-                                </div>
-                                <div class="card-body pb-0">
-                                    <div class="border-bottom mb-3">
-                                        <h5 class="mb-3">Father’s Info</h5>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="d-flex align-items-center flex-wrap row-gap-3 mb-3">
-                                                    <div class="d-flex align-items-center justify-content-center avatar avatar-xxl border border-dashed me-2 flex-shrink-0 text-dark frames">
-                                                        <i class="ti ti-photo-plus fs-16"></i>
-                                                    </div>
-                                                    <div class="profile-upload">
-                                                        <div class="profile-uploader d-flex align-items-center">
-                                                            <div class="drag-upload-btn mb-3">
-                                                                Upload
-                                                                <input type="file" class="form-control image-sign" multiple="" name="father_image">
-                                                            </div>
-                                                            <a href="javascript:void(0);" class="btn btn-primary mb-3">Remove</a>
-                                                        </div>
-                                                        <p class="fs-12">Upload image size 4MB, Format JPG, PNG, SVG</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Father Name</label>
-                                                    <input type="text" class="form-control" name="father_name">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Email</label>
-                                                    <input type="text" class="form-control" name="father_email">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Phone Number</label>
-                                                    <input type="text" class="form-control" name="father_contact">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Father Occupation</label>
-                                                    <input type="text" class="form-control" name="father_occupation">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="border-bottom mb-3">
-                                        <h5 class="mb-3">Mother’s Info</h5>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="d-flex align-items-center flex-wrap row-gap-3 mb-3">
-                                                    <div class="d-flex align-items-center justify-content-center avatar avatar-xxl border border-dashed me-2 flex-shrink-0 text-dark frames">
-                                                        <i class="ti ti-photo-plus fs-16"></i>
-                                                    </div>
-                                                    <div class="profile-upload">
-                                                        <div class="profile-uploader d-flex align-items-center">
-                                                            <div class="drag-upload-btn mb-3">
-                                                                Upload
-                                                                <input type="file" class="form-control image-sign" multiple="" name="mother_image">
-                                                            </div>
-                                                            <a href="javascript:void(0);" class="btn btn-primary mb-3">Remove</a>
-                                                        </div>
-                                                        <p class="fs-12">Upload image size 4MB, Format JPG, PNG, SVG</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Mother Name</label>
-                                                    <input type="text" class="form-control" name="mother_name">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Email</label>
-                                                    <input type="text" class="form-control" name="mother_email">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Phone Number</label>
-                                                    <input type="text" class="form-control" name="mother_contact">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Mother Occupation</label>
-                                                    <input type="text" class="form-control" name="mother_occupation">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h5 class="mb-3">Guardian Details</h5>
-                                        <div class="row">
-                                            <div class="col-md-12">
-
-                                                <div class="d-flex align-items-center flex-wrap row-gap-3 mb-3">
-                                                    <div class="d-flex align-items-center justify-content-center avatar avatar-xxl border border-dashed me-2 flex-shrink-0 text-dark frames">
-                                                        <i class="ti ti-photo-plus fs-16"></i>
-                                                    </div>
-                                                    <div class="profile-upload">
-                                                        <div class="profile-uploader d-flex align-items-center">
-                                                            <div class="drag-upload-btn mb-3">
-                                                                Upload
-                                                                <input type="file" class="form-control image-sign" multiple="" name="guardian_image">
-                                                            </div>
-                                                            <a href="javascript:void(0);" class="btn btn-primary mb-3">Remove</a>
-                                                        </div>
-                                                        <p class="fs-12">Upload image size 4MB, Format JPG, PNG, SVG</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Guardian Name</label>
-                                                    <input type="text" class="form-control" name="guardian_name">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Guardian Relation</label>
-                                                    <input type="text" class="form-control" name="guardian_relation">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Phone Number</label>
-                                                    <input type="text" class="form-control" name="guardian_contact">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Email</label>
-                                                    <input type="email" class="form-control" name="guardian_email">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Occupation</label>
-                                                    <input type="text" class="form-control" name="guardian_occupation">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Address</label>
-                                                    <input type="text" class="form-control" name="guardian_address">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
                             <div class="card" hidden>
                                 <div class="card-header bg-light">
                                     <div class="d-flex align-items-center">
@@ -1592,7 +1449,7 @@ $userEmail = $_SESSION['userEmail'];
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
                                             <i class="ti ti-map fs-16"></i>
                                         </span>
-                                        <h4 class="text-dark">Address &nbsp; <i class="fa-sharp fa-solid fa-star"></i></h4>
+                                        <h4 class="text-dark">Address</h4>
                                     </div>
                                 </div>
                                 <div class="card-body pb-1">
@@ -1634,8 +1491,101 @@ $userEmail = $_SESSION['userEmail'];
                                 </div>
                             </div>
 
+                            <div class="card" hidden>
+                                <div class="card-header bg-light">
+                                    <div class="d-flex align-items-center">
+                                        <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
+                                            <i class="ti ti-building fs-16"></i>
+                                        </span>
+                                        <h4 class="text-dark">Previous School Details &nbsp; <i class="fa-sharp fa-solid fa-star"></i></h4>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-1">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">School Name</label>
+                                                <input type="text" class="form-control" name="previousSchoolName">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Address</label>
+                                                <input type="text" class="form-control" name="previousSchoolAddress">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <div class="card">
+                                <div class="card-header bg-light">
+                                    <div class="d-flex align-items-center">
+                                        <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
+                                            <i class="ti ti-user-shield fs-16"></i>
+                                        </span>
+                                        <h4 class="text-dark">Parents &amp; Guardian Information</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-0">
+                                    <div class="border-bottom mb-3">
+                                        <h5 class="mb-3">Father’s Info</h5>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="d-flex align-items-center flex-wrap row-gap-3 mb-3">
+                                                    <div class="d-flex align-items-center justify-content-center avatar avatar-xxl border border-dashed me-2 flex-shrink-0 text-dark frames">
+                                                        <i class="ti ti-photo-plus fs-16"></i>
+                                                    </div>
+                                                    <div class="profile-upload">
+                                                        <div class="profile-uploader d-flex align-items-center">
+                                                            <div class="drag-upload-btn mb-3">
+                                                                Upload
+                                                                <input type="file" class="form-control image-sign" multiple="" name="father_image">
+                                                            </div>
+                                                            <a href="javascript:void(0);" class="btn btn-primary mb-3">Remove</a>
+                                                        </div>
+                                                        <p class="fs-12">Upload image size 4MB, Format JPG, PNG, SVG</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Father Name</label>
+                                                    <input type="text" class="form-control" name="father_name">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Email</label>
+                                                    <input type="text" class="form-control" name="father_email">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Phone Number</label>
+                                                    <input type="text" class="form-control" name="father_contact">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Father Occupation</label>
+                                                    <input type="text" class="form-control" name="father_occupation">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="text-end" style="margin-bottom: 10px;">
+                                <button type="button" class="btn btn-light me-3">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Student</button>
+                            </div>
+
+
+                            <div class="card" hidden>
                                 <div class="card-header bg-light d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center">
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
@@ -1687,7 +1637,7 @@ $userEmail = $_SESSION['userEmail'];
                             </div>
 
 
-                            <div class="card">
+                            <div class="card" hidden>
                                 <div class="card-header bg-light d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center">
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
@@ -1730,7 +1680,7 @@ $userEmail = $_SESSION['userEmail'];
                             </div>
 
 
-                            <div class="card">
+                            <div class="card" hidden>
                                 <div class="card-header bg-light">
                                     <div class="d-flex align-items-center">
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
@@ -1775,7 +1725,7 @@ $userEmail = $_SESSION['userEmail'];
                             </div>
 
 
-                            <div class="card">
+                            <div class="card" hidden>
                                 <div class="card-header bg-light">
                                     <div class="d-flex align-items-center">
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
@@ -1824,36 +1774,7 @@ $userEmail = $_SESSION['userEmail'];
                                 </div>
                             </div>
 
-
-                            <div class="card">
-                                <div class="card-header bg-light">
-                                    <div class="d-flex align-items-center">
-                                        <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
-                                            <i class="ti ti-building fs-16"></i>
-                                        </span>
-                                        <h4 class="text-dark">Previous School Details &nbsp; <i class="fa-sharp fa-solid fa-star"></i></h4>
-                                    </div>
-                                </div>
-                                <div class="card-body pb-1">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">School Name</label>
-                                                <input type="text" class="form-control" name="previousSchoolName">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Address</label>
-                                                <input type="text" class="form-control" name="previousSchoolAddress">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="card">
+                            <div class="card" hidden>
                                 <div class="card-header bg-light">
                                     <div class="d-flex align-items-center">
                                         <span class="bg-white avatar avatar-sm me-2 text-gray-7 flex-shrink-0">
@@ -1876,12 +1797,6 @@ $userEmail = $_SESSION['userEmail'];
                                                 <input type="text" class="form-control" name="branchOfBank">
                                             </div>
                                         </div>
-                                        <div class="col-md-5">
-                                            <div class="mb-3">
-                                                <label class="form-label">IFSC Number</label>
-                                                <input type="text" class="form-control" name="ifscNumber">
-                                            </div>
-                                        </div>
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label class="form-label">Other Information</label>
@@ -1892,11 +1807,6 @@ $userEmail = $_SESSION['userEmail'];
                                 </div>
                             </div>
 
-
-                            <div class="text-end">
-                                <button type="button" class="btn btn-light me-3">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Add Student</button>
-                            </div>
                         </form>
                     </div>
                 </div>
@@ -1924,8 +1834,19 @@ $userEmail = $_SESSION['userEmail'];
 
     <script src="js/bootstrap-tagsinput.js" type="64fcbc7fb2835ef23848ab43-text/javascript"></script>
 
+    <script src="js/nepali.datepicker.v4.0.5.min.js" type="text/javascript"></script>
+
     <script src="js/script.js" type="64fcbc7fb2835ef23848ab43-text/javascript"></script>
     <script src="js/rocket-loader.min.js" data-cf-settings="64fcbc7fb2835ef23848ab43-|49" defer=""></script>
+
+    <script>
+        window.onload = function() {
+            var dob = document.getElementById("dob");
+            var adm_date = document.getElementById("adm_date");
+            dob.nepaliDatePicker();
+            adm_date.nepaliDatePicker();
+        };
+    </script>
 </body>
 
 </html>

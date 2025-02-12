@@ -16,15 +16,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         isset($_POST['academic_year']) && isset($_POST['admission_number']) && isset($_POST['admission_date']) &&
         isset($_POST['roll_number']) && isset($_POST['status']) && isset($_POST['first_name']) &&
         isset($_POST['last_name']) && isset($_POST['class']) && isset($_POST['section']) &&
-        isset($_POST['gender']) && isset($_POST['dob']) &&
-        isset($_POST['current_addressOfStudent']) && isset($_POST['permanent_addressOfStudent']) &&
-        isset($_POST['districtOfStudent']) && isset($_POST['provinceOfStudent']) &&
-        isset($_POST['previousSchoolName']) && isset($_POST['previousSchoolAddress']) &&
+        isset($_POST['gender']) &&
         isset($_POST['ifscNumber']) && isset($_POST['feesGroup'])
     ) {
+        
 
-        // Validate feesGroup to make sure it's not empty
-        if (isset($_POST['feesGroup']) && is_array($_POST['feesGroup'])) {
+         // Validate feesGroup to make sure it's not empty
+         if (isset($_POST['feesGroup']) && is_array($_POST['feesGroup'])) {
             $feesGroups = $_POST['feesGroup'];
             $feeGroupAll = implode(", ", $feesGroups);
 
@@ -32,11 +30,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "No group selected.";
             exit;
         }
+
         // Basic validations for name fields
         if (
             !preg_match("/^[a-zA-Z\s'-]+$/", $_POST['first_name']) ||
-            !preg_match("/^[a-zA-Z\s'-]+$/", $_POST['last_name']) ||
-            !preg_match("/^[a-zA-Z\s'-]+$/", $_POST['previousSchoolName'])
+            !preg_match("/^[a-zA-Z\s'-]+$/", $_POST['last_name'])
         ) {
             echo "Only letters, spaces, hyphens, and apostrophes are allowed in First name, Last name, and other name fields.";
             exit;
@@ -49,7 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mother_name = !empty($_POST['mother_name']) && preg_match("/^[a-zA-Z\s'-]+$/", $_POST['mother_name']) ? $_POST['mother_name'] : null;
             $guardian_name = !empty($_POST['guardian_name']) && preg_match("/^[a-zA-Z\s'-]+$/", $_POST['guardian_name']) ? $_POST['guardian_name'] : null;
 
-            $previousSchoolName = $_POST['previousSchoolName'];
             $bankName = !empty($_POST['bankName']) && preg_match("/^[a-zA-Z\s'-]+$/", $_POST['bankName']) ? $_POST['bankName'] : null;
             $branchOfBank = !empty($_POST['branchOfBank']) && preg_match("/^[a-zA-Z\s'-]+$/", $_POST['branchOfBank']) ? $_POST['branchOfBank'] : null;
         }
@@ -86,12 +83,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $class = $_POST['class'];
         $section = $_POST['section'];
         $gender = $_POST['gender'];
-        $dob = $_POST['dob'];
-        $current_addressOfStudent = $_POST['current_addressOfStudent'];
-        $permanent_addressOfStudent = $_POST['permanent_addressOfStudent'];
-        $districtOfStudent = $_POST['districtOfStudent'];
-        $provinceOfStudent = $_POST['provinceOfStudent'];
-        $previousSchoolAddress = $_POST['previousSchoolAddress'];
         $feesGroup = $_POST['feesGroup'];
 
         // Email validation for optional fields
@@ -124,6 +115,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $guardian_relation = $_POST['guardian_relation'] ?? "";
         $guardian_address = $_POST['guardian_address'] ?? "";
         $otherInfo = $_POST['otherInfo'] ?? "";
+        $previousSchoolName = $_POST['previousSchoolName'] ?? "";
+        $previousSchoolAddress = $_POST['previousSchoolAddress'] ?? "";
+        $current_addressOfStudent = $_POST['current_addressOfStudent'] ?? "";
+        $permanent_addressOfStudent = $_POST['permanent_addressOfStudent'] ?? "";
+        $districtOfStudent = $_POST['districtOfStudent'] ?? "";
+        $provinceOfStudent = $_POST['provinceOfStudent'] ?? "";
+        $dob = $_POST['dob'] ?? "";
     } else {
         echo "Some required fields are missing.";
         exit;
@@ -182,7 +180,7 @@ $stmt = $mysqli->prepare("UPDATE `addstudent` SET
 `imageOfStudent` = ?, `academicYear` = ?, `admissionNumber` = ?, `admissionDate` = ?, 
 `rollNumber` = ?, `studentStatus` = ?, `fnameOfStudent` = ?, `lnameOfStudent` = ?, 
 `class` = ?, `section` = ?, `gender` = ?, `dateOfBirth` = ?, 
-`bloodGroup` = ?, `house` = ?, `religion` = ?, `feesGroup` = ?, 
+`bloodGroup` = ?, `house` = ?, `religion` = ?, `feesGroup` = ?,
 `caste` = ?, `primaryContact` = ?, `emailOfstudent` = ?, `motherTongue` = ?, 
 `languageKnown` = ?, `imageOfFather` = ?, `fatherName` = ?, 
 `emailOfFather` = ?, `fatherContact` = ?, `fatherProfession` = ?, 
